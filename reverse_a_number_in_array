@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace revrse_number
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            Console.WriteLine("enter size of array:");
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[] arr = new int[n];
+            Console.WriteLine("enter elemnets:");
+            for (int y = 0; y < n; y++) {
+                arr[y] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine("\n");
+            for (int i = 0; i < n; i++) {
+                Console.WriteLine(arr[i]);
+            }
+          
+            Console.WriteLine("\n");
+           
+
+           // for (int i = n-1; i >=0; i--)
+          //  {
+          //      Console.WriteLine(arr[i]);
+          //  }
+
+            for (int x = 0; x < n; x++) {
+                int rev = 0;
+                //int temp = arr[x];
+                while (arr[x] > 0) {
+                    int sum = arr[x] % 10;
+                    rev = rev * 10 + sum;
+                    arr[x] = arr[x] / 10;
+                }
+                Console.Write("{0} \t",rev);
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
