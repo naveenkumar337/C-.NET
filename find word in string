@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace find_word
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("enter string:");
+            String str = Console.ReadLine();
+            String[] arr = str.Split(' ');
+
+          //  for (int i = 0; i < arr.Length; i++) {
+          //      Console.WriteLine(arr[i]);
+          //  }
+            Console.WriteLine("enter word to search:");
+            String value = Console.ReadLine();
+            int temp = 1;
+            for (int i = 0; i < arr.Length; i++) {
+                
+                if (value == arr[i])
+                {
+                    temp = 0;
+                }
+
+            }
+            if (temp == 0)
+            {
+                Console.WriteLine("found your searching word is {0}", value);
+            }
+            else {
+                Console.WriteLine("searching word was not found");
+            }
+        
+            Console.ReadKey();
+        }
+    }
+}
