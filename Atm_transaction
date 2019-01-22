@@ -1,0 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace atm
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int bal = 5000, withdraw=0, deposit=0;
+            Console.WriteLine();
+           
+            Console.WriteLine("\t\t****Insert your card.****");
+            Console.WriteLine();
+            Console.WriteLine("enter your security code");
+
+            int pin = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\t\tWELCOME TO ATM");
+            Console.WriteLine();
+            while (true)
+            {
+                
+                Console.WriteLine("1.Withdraw");
+                Console.WriteLine("2.Deposit");
+                Console.WriteLine("3.BalanceEnquiry");
+                Console.WriteLine("4.Mini statement");
+                Console.WriteLine("5.Exit");
+                Console.WriteLine();
+                Console.WriteLine("enter your choice");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+
+                {
+                    case 1:
+                        Console.WriteLine("Enter money to withdraw");
+                        withdraw = Convert.ToInt32(Console.ReadLine());
+                        if (bal >= withdraw)
+                        {
+                            bal = bal - withdraw;
+                            Console.WriteLine("Collect your money ");
+                            Console.WriteLine("\t\n CURRENT BALANCE IS Rs: {0}", bal);
+                            Console.WriteLine();
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("insufficient bal");
+
+                        }
+                        Console.WriteLine(" ");
+                        break;
+
+                    case 2:
+                        Console.WriteLine("enter money to deposit");
+                        deposit = Convert.ToInt32(Console.ReadLine());
+                        if (bal >= deposit)
+                        {
+                            bal = bal + deposit;
+                            Console.WriteLine("your transaction is successfull. ");
+                            Console.WriteLine("\t\n CURRENT BALANCE IS Rs : {0}", bal);
+                            //.Console.WriteLine();
+
+                        }
+                        Console.WriteLine();
+                        break;
+                    case 3:
+                        Console.WriteLine("\t\n CURRENT BALANCE IS Rs : {0}",bal);
+                        Console.WriteLine(" ");
+                        break;
+                    case 4:
+                        Console.WriteLine("MINI STATEMENT:");
+                        Console.WriteLine("Last withdraw ammount is:" + withdraw);
+                        Console.WriteLine("Last deposite amount is:" + deposit);
+                        Console.WriteLine("Current balence is Rs:" + bal);
+                        Console.WriteLine();
+                        break;
+                    case 5:
+
+                        System.Environment.Exit(0);
+                        break;
+
+                }
+            }
+        }
+    }
+}
