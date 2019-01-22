@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DATE_TIME
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DateTime now = DateTime.Now;
+            DateTime newYears = new DateTime(2019,01,22);
+            TimeSpan span = newYears.Subtract(now);
+       
+            Console.WriteLine(span.ToString());
+            Console.WriteLine("{0} days", (int)span.TotalDays);
+            Console.ReadKey();
+        }
+    }
+}
