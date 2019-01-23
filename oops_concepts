@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace oops_concepts
+{
+    //creation of class
+    class OOps {
+    //creation of method
+    public void method1 (){
+            Console.WriteLine("default  method");
+        }
+       public void method2(String name) {
+            Console.WriteLine("parametarized method with value=" + name);
+        }
+
+    }
+
+
+    //implementation of inheritance
+     class OOPS2 : OOps {
+        void method()
+        {
+            Console.WriteLine("inside a inherited class");
+        }
+        //overriding method
+        public void method1() {
+            Console.WriteLine("this is overriding method");
+        }
+        
+       }
+
+
+    //polymorphism
+    class POlymorphism
+    {
+       
+       public void add()
+        {
+            int a = 10;
+            int b = 20;
+            int c = a + b;
+            Console.WriteLine("addition of a+b is" + c);
+        }
+        //overloading method
+        public void add(int a, int b)
+        {
+            Console.WriteLine("values are {0} and {1}", a, b);
+        }
+    }
+
+
+
+    //Abstatction
+    abstract class Abstaction {
+        public int a;
+        abstract public void method();
+    }
+    class Access_abst : Abstaction{
+        public void m1() {
+            this.a = 10;
+            Console.WriteLine("a vlue is "+a);
+        }
+      override public  void method() {
+            Console.WriteLine("this is abstact method.");
+        }
+    }
+
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //creation of object for OOPS2
+            OOPS2 obj = new OOPS2();
+            obj.method1();
+            //accessing OOps class  method
+            obj.method2("naveen");
+
+            POlymorphism poly = new POlymorphism();
+            poly.add();
+            poly.add(10, 20);
+
+            Access_abst abst = new Access_abst();
+            abst.method();
+            abst.m1();
+
+           // Abstaction ab = new Abstaction();
+
+
+
+            Console.ReadKey();
+
+        }
+    }
+}
