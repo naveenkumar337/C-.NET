@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+
+    <style>
+        thead {color:green;}
+tbody {color:blue;}
+tfoot {color:red;}
+
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+    <form>
+        TEXTFIELDS:<br>
+        <fieldset>
+            First Name:      <input type="text" name="firstname" value="firstname" maxlength="15"><br>
+            Last Name:       <input type="text" name="lastname"><br>
+            Full Name:       <input type="text" name="fullname" maxlength="35" required><br>
+            E-mail:          <input type="text" name="email" required><br>
+            Alternate Email: <input type="text" name="email"><br>
+            DOB:            <input type="date" name="bday" required><br>
+            NUMBERS :       <input type="number" name="quantity" min="1" max="5">
+
+        </fieldset>
+        <br>
+        BUTTONS:<br>
+        <fieldset>
+            Gender :<br>
+            Male:<input type="radio" value="male">
+            Female:<input type="radio" value="Female"><br>
+            <br>
+            Languages Kown:<br>
+            <input type="checkbox" name="checkbox" value="english">English <br>
+            <input type="checkbox" name="checkbox" value="hindi"> Hindi<br>
+            <input type="checkbox" name="checkbox" value="telugu"> Telugu<br>
+            <input type="checkbox" name="checkbox" value="kanada"> Kanada<br>
+
+        </fieldset>
+        DROPDOWN LIST:<br>
+        <fieldset>
+            Select Branch:
+            <input list="branch" name="branch">
+            <datalist id="branch">
+                <option value="CSE">
+                <option value="ECE">
+                <option value="EEE">
+                <option value="CIVIL">
+                <option value="MECHANICAL">
+                <option value="B Pharm">
+</datalist><br>
+            Select Course:
+            <select>
+                <option value="select">Select</option>
+                <option value="Diploma">Diploma</option>
+                <option value="B Tech">B Tech</option>
+                <option value="B pharm"> B Pharm</option>
+                   </select>
+        </fieldset>
+
+        <br>
+        List:
+        <fieldset>
+            Unoedre list:<br>
+            <ul>
+                <li>Coffee</li>
+                <li>Tea</li>
+                <li>Milk</li>
+            </ul>
+            Order list:
+            <ol type="1">
+                <li>Mango</li>
+                <li>Orange</li>
+                <li>Apple</li>
+            </ol>
+        </fieldset>
+
+        Table:<br>
+        <fieldset>
+        <table>
+            <thead><tr><td>S.NO</td>
+            <td>NAME</td>
+                </tr>
+                    </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>ram</td>
+                    </tr>
+                <tr>
+                    <td>2</td>
+                    <td>gopal</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>varma</td>
+                </tr>
+                </tbody>
+                </table>
+            </fieldset>
+
+        HTML BLOCKS:<br>
+        <fieldset>
+            Div Block:<br>
+            <div style="color:green">
+                <h4>This is h4 block</h4>
+                <p>This is paragraph tag.</p>
+
+            </div>
+            Span Block:<br>
+            <span>
+                <h5>This is span block</h5>
+                <p>This is span block passage.</p>
+            </span>
+            </fieldset><br>
+            <input type="submit">    <input type="reset">
+</form>
+</body>
+</html>
