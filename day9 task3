@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace day9task3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("enter your grade:");
+            int grade = Convert.ToInt32(Console.ReadLine());
+
+            if (grade < 38)
+            {
+                Console.WriteLine("sorry,your fail");
+            }
+            else if (grade % 5 == 0)
+            {
+                Console.WriteLine("congrats your pass.");
+            }
+            else if (((grade + 1) % 5 == 0) || ((grade + 2) % 5 == 0))
+            {
+                Console.WriteLine("congrats your pass.");
+            }
+            else {
+                Console.WriteLine("congrats your pass,but you not eligible for rouded phase.");
+            }
+            Console.ReadKey();
+        }
+    }
+}
