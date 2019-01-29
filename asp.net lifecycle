@@ -1,0 +1,73 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace asp_life_cycle
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            Response.Write("<br/>" + "preinit");
+        }
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            Response.Write("<br/>" + "this is init phase\n");
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+            //if (IsPostBack)
+            //{
+            //    Response.Write("second time\n");
+            //    txtName.Text=btnName.Text;
+            //}
+            //else
+            //{
+               // txtName.Text = "lokesh";
+                Response.Write("<br/>"+"page_load\n");
+            //}
+        }
+        protected void btnName_Click(object sender, EventArgs e)
+        {
+           // btnName.Text = "click here";
+        }
+        
+        protected void Page_InitComplete(object sender, EventArgs e)
+        {
+            Response.Write("<br/>"+"this is initcomplete phase\n");
+
+        }
+
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            Response.Write("<br/> "+"this is loadcomplete phase.\n");
+
+        }
+
+        protected override void OnPreLoad(EventArgs e)
+        {
+            Response.Write("<br/>" + "thi os is onpreload.\n");
+
+        }
+        protected override void OnPreRender(EventArgs e)
+        {
+            Response.Write("<br/>" + "this is pre render phase.\n");
+        }
+        protected void Page_OnSaveStateComplete(object sender, EventArgs e)
+        {
+            Response.Write("<br/>" + "this is onsavestatecomplete\n");
+
+        }
+        protected void Render(EventArgs e)
+        {
+            Response.Write("<br/>" + "this is redermethod phase.\n");
+        }
+       // protected void Page_UnLoad(object sender, EventArgs e) {
+          //  Response.Write("this is unload phase");
+      //  }
+    }
+}
