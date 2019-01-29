@@ -1,0 +1,6 @@
+<script>
+function name(){
+window.location("lactionof file");}
+</script>
+
+<input type="button" value="submit" onclick="name()"/>
