@@ -1,0 +1,27 @@
+<%@ Page Title="" Language="C#" MasterPageFile="~/page.Master" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs" Inherits="using_mastr_page.WebForm2" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div align="center">
+        FirstName:      
+        <input type="text" /><br/><br />
+        Lastname:       
+        <input type="text" /><br /><br />
+        PhoneNumber:    
+        <input type="text" /><br /><br />
+        EmailId:        
+        <input type="text" /><br /><br />
+        NewPassword:    
+        <input type="text" /><br /><br />
+        ConfirmPassword:
+        <input type="text" /><br /><br />
+
+        <input type="button" value="submit" onclick="link()">
+
+    </div>
+    <script type="text/javascript">
+        function link() {
+            window.location = "WebForm1.aspx";
+        }
+    </script>
+</asp:Content>
