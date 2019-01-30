@@ -1,0 +1,67 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="page.master.cs" Inherits="using_mastr_page.page" %>
+
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+           
+            height: 80px;
+            width:device-width;
+            background-color:#BDBDBD;
+        }
+        
+            
+        }
+        .auto-style4 {
+            height: 600px;
+            width: 1588px;
+        }
+        
+        .auto-style5 {
+            width: 306px;
+            background-color:#D8D8D8;
+        }
+        
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <table>
+            <tr>
+                <td   colspan="2" ; text-align="center"; class="auto-style1" >
+                    <h1 align="center" >WelCome To Our Website.</h1>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style5">
+                    
+                   <h3 align="center"> <a href="WebForm1.aspx">Login</a></h3>
+                    <h4 align="center"> <a href="WebForm2.aspx">Registration</a></h4>
+
+                </td>
+
+
+                <td class="auto-style4">
+                   
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+         <h2>This is main page</h2>
+        </asp:ContentPlaceHolder>
+                        
+                </td>
+              </tr>
+
+            
+        
+            </table>
+    </div>
+        
+    </form>
+</body>
+</html>
