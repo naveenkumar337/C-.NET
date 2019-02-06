@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+
+namespace WINDOWFORM1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void name_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Click(object sender, EventArgs e)
+        {
+            //conection from visual studios to database
+            string str = "data source=SQLLISTENER; database=DIT-Training; integrated security=SSPI";
+            SqlConnection con = new SqlConnection(str);
+           
+            try {
+                //dataadpter for DML operation
+
+                SqlDataAdapter da = new SqlDataAdapter();
+                object sqlDbType = null;
+
+                //insert values using form
+                da.InsertCommand = new SqlCommand("INSERT INTO DATA1 VALUES(@ID,@NAME)", con);
+                da.InsertCommand.Parameters.Add("@id", sqlDbType).Value = textBox1.Text;
+                da.InsertCommand.Parameters.Add("@name", sqlDbType).Value = textBox2.Text;
+
+
+                //delete values using form
+                da.DeleteCommand = new SqlCommand("DELETE DATA1 WHERE ID=789",con);
+               
+                con.Open();
+
+                da.InsertCommand.ExecuteNonQuery();
+                da.DeleteCommand.ExecuteNonQuery();
+              
+                //print data list
+                MessageBox.Show("data inserted successfully");
+                SqlCommand mycamand = new SqlCommand("SELECT * FROM DATA1",con);
+                SqlDataReader reader = mycamand.ExecuteReader();
+                while (reader.Read()) {
+                    Console.WriteLine(reader["id"].ToString()+"  "+ reader["name"].ToString());
+               }
+
+                con.Close();
+            }
+            catch (Exception ex) {
+                MessageBox.Show("not connected"+ex);
+            }
+        }
+    }
+}
