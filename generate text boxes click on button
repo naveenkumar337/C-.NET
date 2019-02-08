@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Collections;
+
+namespace _8_2_2019
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        int count=0;
+        List<string> li = new List<string>();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+        protected override void LoadViewState(object savedState)
+        {
+            base.LoadViewState(savedState);
+            li = (List<string>)ViewState["list"];
+            foreach (string item in li)
+            {
+                count++;
+                TextBox tb = new TextBox();
+                tb.ID = item;
+                Panel1.Controls.Add(tb);
+                Console.WriteLine("\n");
+
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+              TextBox tb = new TextBox();
+                tb.ID = "txtbox" + count;
+                li.Add(tb.ID);
+                ViewState["list"] = li;
+                Console.WriteLine();
+                string str = tb.Text;
+            }
+            catch(Exception ex) {
+            }
+
+        }
+    }
+}
