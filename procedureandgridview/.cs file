@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+
+namespace dataconnect
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        // private object id;
+        //    private object name;
+        SqlConnection con = new SqlConnection("Data Source=(LocalDb)\\sample; Database=TEST;Integrated Security=SSPI");
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand("sp_test", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.Add("@id",SqlDbType.NVarChar).Value=@id.Text;
+                //cmd.Parameters.Add("@name", SqlDbType.VarChar).Value =@city.Text.Tostring();
+                cmd.Parameters.AddWithValue("@id", SqlDbType.Int).Value = TextBox1.Text.Trim();
+                cmd.Parameters.AddWithValue("@name", SqlDbType.VarChar).Value = TextBox2.Text.Trim();
+                cmd.Parameters.AddWithValue("@city", SqlDbType.VarChar).Value = TextBox3.Text.Trim();
+
+
+                cmd.ExecuteNonQuery();
+                Response.Write("data added success");
+
+                con.Close();
+            }
+            catch (Exception)
+            {
+                Response.Write("fail");
+
+            }
+            
+
+        }
+        protected void Button2_Click(object sender, EventArgs e) {
+            con.Open();
+            SqlCommand com = new SqlCommand("sp_dispaly",con);
+            com.CommandType = CommandType.StoredProcedure;
+            DataTable dt = new DataTable();
+            dt.Load(com.ExecuteReader());
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+            con.Close();
+        }
+    }
+}
