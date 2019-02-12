@@ -1,0 +1,159 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+
+namespace gridview
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                Fillgridview();
+            }
+        }
+        private void Fillgridview()
+        {
+
+            SqlConnection con = new SqlConnection("Data Source=(LocalDb)\\sample; Database=TEST;Integrated security=SSPI");
+            try
+            {
+                // con.Open();
+                con.Open();
+                SqlCommand com = new SqlCommand("select * from tbl_gridview", con);
+              //  com.CommandType = CommandType.StoredProcedure;
+              //  DataTable dt = new DataTable();
+              //  dt.Load(com.ExecuteReader()); 
+                GridView1.DataSource = com.ExecuteReader();
+                GridView1.DataBind();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex);
+            }
+        }
+        protected void gvPerson_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+              
+            GridView1.PageIndex = e.NewPageIndex;
+            Fillgridview();
+        }
+        protected void gvPerson_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            
+            GridView1.EditIndex = e.NewEditIndex;
+            Fillgridview();
+        }
+        protected void gvPerson_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            // Exit edit mode. 
+            GridView1.EditIndex = -1;
+
+
+            // Rebind the GridView control to show data in view mode. 
+            Fillgridview();
+
+
+            // Show the Add button. 
+           // lbtnAdd.Visible = true;
+        }
+
+        protected void gvPerson_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection("Data Source = (LocalDb)\\sample; Database = TEST; Integrated security = SSPI"))
+            {
+                
+                SqlCommand cmd = new SqlCommand();
+                                cmd.Connection = conn;               
+                cmd.CommandText = "DELETE FROM tbl_gridview WHERE id = @id";
+                
+                cmd.CommandType = CommandType.Text;
+                string strPersonID = GridView1.Rows[e.RowIndex].Cells[2].Text;
+                cmd.Parameters.Add("@id", SqlDbType.Int).Value = strPersonID;
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+
+            // Rebind the GridView control to show data after deleting. 
+            Fillgridview();
+            Response.Write("row deleted successfully.");
+        }
+
+        protected void gvPerson_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection("Data Source = (LocalDb)\\sample; Database = TEST; Integrated security = SSPI"))
+            {
+                // Create a command object. 
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "UPDATE tbl_gridview SET lastname = @lastname, first_name = @first_name WHERE id = @id";
+                cmd.CommandType = CommandType.Text;
+
+
+                // Get the PersonID of the selected row. 
+                string strPersonID = GridView1.Rows[e.RowIndex].Cells[2].Text;
+                string strLastName = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("TextBox1")).Text;
+                string strFirstName = ((TextBox)GridView1.Rows[e.RowIndex].FindControl("TextBox2")).Text;
+
+
+                // Append the parameters. 
+                cmd.Parameters.Add("@id", SqlDbType.Int).Value = strPersonID;
+                cmd.Parameters.Add("@lastname", SqlDbType.NVarChar, 50).Value = strLastName;
+                cmd.Parameters.Add("@first_name", SqlDbType.NVarChar, 50).Value = strFirstName;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            GridView1.EditIndex = -1;
+            Fillgridview();
+            Response.Write("data update sucessfully");
+
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            
+                // Hide the Add button and showing Add panel. 
+                LinkButton1.Visible = false;
+                pnlAdd.Visible = true;
+            
+        }
+        protected void lbtnSubmit_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection("Data Source = (LocalDb)\\sample; Database = TEST; Integrated security = SSPI"))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "INSERT INTO tbl_gridview ( id,lastname, first_name ) VALUES ( @id,@lastname, @first_name )";
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.Add("@id", SqlDbType.Int).Value = txtid.Text;
+                cmd.Parameters.Add("@lastname", SqlDbType.NVarChar, 50).Value = tbLastName.Text;
+                cmd.Parameters.Add("@first_name", SqlDbType.NVarChar, 50).Value = tbFirstName.Text;
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            Fillgridview();
+            txtid.Text = "";
+            tbLastName.Text = "";
+            tbFirstName.Text = "";
+            Response.Write("new reord added.");
+        }
+        protected void lbtnCancel_Click(object sender, EventArgs e)
+        {
+            txtid.Text = "";
+            tbLastName.Text = "";
+            tbFirstName.Text = "";
+
+        }
+        }
+}
+
+            
