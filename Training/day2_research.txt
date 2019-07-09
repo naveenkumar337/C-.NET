@@ -1,0 +1,12 @@
+
+
+1..net framework architecture
+2. .net components
+		FCL,CLR,LANGUAGES
+3. programing fundamentals
+		VARIABLES,DATATYPES,LITERALS,REFERENCE TYPE,CONSOLE OPERATIONS,
+4. coding standerds
+5. code optimization
+
+
+

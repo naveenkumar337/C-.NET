@@ -1,0 +1,130 @@
+String Palindrome:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StringPalindrome
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string name;
+            Console.WriteLine("enter string to check");
+            name = Console.ReadLine();
+            string another="";
+            StringBuilder sb = new StringBuilder();
+            for (int i = name.Length - 1; i >= 0; i--)
+            {
+
+              another=  sb.Append(name[i]).ToString();
+            }
+
+            if (another == name)
+            {
+                Console.WriteLine(name+" is pallindrome");
+            }
+            else { Console.WriteLine(name +" is not pallindrome");
+            }
+            Console.ReadKey();
+        }
+    }
+}
+
+
+String Finding:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StringFinding
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StringBuilder sb = new StringBuilder();
+            string name = "naveen kumar kulki";
+            string anothername = "raj";
+            int flag = 0;
+            int str2 = anothername.Length;
+            for (int i = 0; i < name.Length; i++)
+            {
+                for (int j = i; j < str2; j++)
+                {
+                    if (j == name.Length) 
+                        break;
+                    else                   
+                       sb.Append(name[j]);
+                    
+                }
+               
+                if (sb.ToString() == anothername)
+                {
+                    flag = 1;
+                }
+
+               
+                sb.Clear();
+                str2++;
+             }
+            if (flag == 1)
+            {
+                Console.WriteLine("found");
+
+            }
+            else
+            {
+                Console.WriteLine("not found");
+                    }
+            Console.ReadKey();
+        }
+    }
+}
+
+Title Case:
+
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TitleCase
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string name = "raju is verry bad boy";
+            StringBuilder sb = new StringBuilder();
+            char c = char.ToUpper(name[0]);
+            sb.Append(c);
+            for (int i = 1; i < name.Length; i++) {
+                
+                if (name[i - 1] == ' ')
+                {
+                    c = char.ToUpper(name[i]);
+                    sb.Append(c);
+
+                }
+                else {
+                    sb.Append(char.ToLower(name[i]));
+                }
+
+            }
+            Console.WriteLine(sb);
+           
+            Console.ReadKey();
+        }
+        
+    }
+}
+

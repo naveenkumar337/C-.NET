@@ -1,0 +1,123 @@
+static vs dynamic html:
+
+The easiest difference is static HTML once rendered cannot be changed on the other hand dynamic HTML can be changed.
+Static web pages cannot have database access but dynamic pages can be connected to database.
+Using static HTML no interactions persist between user and server but dynamic HTML has capability to interact with the user.
+Static HTML does not require server side coding but dynamic HTML requires server side coding.
+No animation, games can be developed using the static HTML but on the other hand dynamic HTML can perform this task.
+HTML(static) is a markup language while DHTML is a collection of technologies.
+HTML(static) sites are slow upon client-side technologies whereas DHTML sites are comparatively faster.
+Web pages created using static HTML are rather simple and have no styling as it uses only one language whereas Dynamic HTML uses HTML, CSS, and Javascript which results in a much better and way more presentable webpage.
+
+
+JavaScript:
+JavaScript is a scripting language which helps you create interactive web pages. It followed rules of client-side programming, so it runs in the user's web browser without the need of any resources forms the web server. You can also use Javascript with other technologies like REST APIs, XML, and more.
+JavaScript is a very powerful client-side scripting language. JavaScript is used mainly for enhancing the interaction of a user with the webpage. 
+JavaScript is also being used widely in game development and Mobile application development.
+In fact, the browser is responsible for running JavaScript code. When a user requests an HTML page with JavaScript in it, the script is sent to the browser and it is up to the browser to execute it. 
+The main advantage of JavaScript is that all modern web browsers support JavaScript. So, you do not have to worry about whether your site visitor uses Internet Explorer, Google Chrome, Firefox or any other browser. JavaScript will be supported. Also, JavaScript runs on any operating system including Windows, Linux or Mac. 
+You should place all your JavaScript code within <script> tags (<script> and </script>) if you are keeping your JavaScript code within the HTML document itself.
+
+<html>
+<title></title>
+<body>
+<script>
+//java script coading..
+</script>
+</body>
+</html>
+
+JavaScript Array:
+var students = new Array("John", "Ann", "Kevin");
+methods-length,reverse,sort,pop,shift,push;
+javascript support loops,conditional statements,methods,cookies(A cookie is a piece of data that is stored on your computer to be accessed by your browser).
+You can use JavaScript code in two ways.
+You can either include the JavaScript code internally within your HTML document itself
+You can keep the JavaScript code in a separate external file and then point to that file from your HTML document.
+<script type="text/javascript" src="currentdetails.js">
+
+What JavaScript Does:
+JavaScript can change all the HTML elements in the page
+JavaScript can change all the HTML attributes in the page
+JavaScript can change all the CSS styles in the page
+JavaScript can remove existing HTML elements and attributes
+JavaScript can add new HTML elements and attributes
+JavaScript can react to all existing HTML events in the page
+JavaScript can create new HTML events in the page.
+
+
+CSS:
+
+
+CSS stands for Cascading Style Sheets.
+CSS is a language that describes the style of an HTML document.
+CSS describes how HTML elements should be displayed.
+CSS saves a lot of work. It can control the layout of multiple web pages all at once.
+CSS describes how HTML elements are to be displayed on screen, paper, or in other media.
+Css syntax:
+h1{color:blue;font-size:12px;}
+
+CSS Selectors:
+element selector: p{colo:blue;}
+id selector: #name{text-align:center;}
+class selector:.name{font-size:25px;}
+
+External Style Sheet:
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+inline style sheet:
+<h1 style="color:blue;margin-left:30px;">This is a heading</h1>
+
+css Image:
+<img src="img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
+
+
+jQuery:
+
+
+jQuery is a lightweight, "write less, do more", JavaScript library.
+jQuery is a JavaScript Library.
+jQuery greatly simplifies JavaScript programming.
+jQuery is easy to learn,The purpose of jQuery is to make it much easier to use JavaScript on your website.
+The jQuery library contains the following features:
+
+HTML/DOM manipulation
+CSS manipulation
+HTML event methods
+Effects and animations
+AJAX
+
+There are several ways to start using jQuery on your web site. You can:
+   Download the jQuery library from jQuery.com
+   Include jQuery from a CDN, like Google
+JQuery CDN:
+	<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	</head>
+
+The jQuery syntax is tailor-made for selecting HTML elements and performing some action on the element(s).
+Basic syntax is: $(selector).action()Examples:
+$(this).hide() - hides the current element.
+
+jQuery Selectors:
+element selector: $("p")
+id selector: $("#name")
+class selector: $(".button")
+
+jQuery Effects:
+$("p").hide();
+
+Setting text using id selector:
+$("#textbox").text("hello world");
+
+AJAX:
+AJAX = Asynchronous JavaScript and XML.
+AJAX is the art of exchanging data with a server, and updating parts of a web page - without reloading the whole page.
+Syntax: $(selector).load(URL,data,callback);
+
+
+CDN:
+A Content Delivery Network (CDN) is a system of computers that exist all over the world and cache files for users to access.
+CDNs can greatly reduce the load time of a page by offering files at a higher bandwidth from a server that is physically closer to your visitor than your web server might be.
+A Content Delivery Network (CDN) is a service that can help the static content on your site (images, CSS, Javascript) load much more quickly. ... We give you control over enabling or disabling the CDN as needed. 

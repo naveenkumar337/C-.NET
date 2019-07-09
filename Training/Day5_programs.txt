@@ -1,0 +1,224 @@
+1)Getting Student Marks and Details
+
+Program.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Student
+{
+              
+    class Program
+    {
+         
+        static void Main(string[] args)
+        {
+            string rollno;
+            Console.WriteLine("enter roll number");
+            rollno = Console.ReadLine();
+
+            string name;
+            Console.WriteLine("enter name:");
+            name = Console.ReadLine();
+
+            int[] marks = new int[3];
+            Console.WriteLine("enter marks of subject");
+            for (int i = 0; i < 3; i++)
+            {
+                    Console.Write("Subject {0}:",i+1);
+                    int range = 0;
+                    range = Convert.ToInt32(Console.ReadLine());
+
+                    if (range <= 100)
+                                      marks[i] = range;                                  
+                    else {
+                         Console.WriteLine("enter valid mark");
+                         Console.ReadLine();
+                         System.Environment.Exit(1);
+                          }
+            }
+
+            Student pro = new Student(rollno,name);
+            pro.Addmarks(marks);
+            pro.GetDisplay();
+           
+            Console.ReadKey();
+
+        }
+    }
+}
+
+Student.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Student
+{
+    class Student
+    {
+        string sname;
+        string rollnumber;
+        int total = 0;
+        int[] marks;
+        public Student(string rollno, string name)
+        {
+            rollnumber = rollno;
+            sname = name;
+
+
+        }
+        public int Addmarks(int[] arr)
+        {
+            marks = arr;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                total = total + arr[i];
+            }
+            return total;
+        }
+        public void GetDisplay()
+        {
+            Console.WriteLine();
+
+            Console.WriteLine("Student Name:" + sname);
+            Console.WriteLine("Student Roll Number :" + rollnumber);
+            Console.WriteLine("Students Marks In Each Subject:");
+            for (int i = 0; i < marks.Length; i++)
+            {
+                Console.WriteLine("Subject {0}={1}", i + 1, marks[i]);
+
+            }
+            if (marks[0] >= 35 && marks[1] >= 35 && marks[2] >= 35)
+            {
+                Console.WriteLine("***PASS***");
+            }
+            else
+            {
+                Console.WriteLine("FAIL");
+
+
+            }
+            Console.WriteLine();
+            Console.WriteLine("Total marks:" + total);
+            decimal percentage = (Convert.ToDecimal(total) / 300) * 100;
+            Console.WriteLine("Percentage is:" + Convert.ToInt32(percentage));
+        }
+    }
+}
+
+2)Banking Servieces
+
+Program.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Banking_Transaction
+{
+         
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter Account number:");
+            double accountno = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter Name Of The Account Holder :");
+            string strname = Console.ReadLine();
+
+            
+            Account ac = new Account();
+            ac.Services();
+
+            Console.WriteLine("***Thanks For Using Banking Services***");
+       
+          Console.ReadLine();
+        }
+        
+    }
+}
+
+
+Account.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Banking_Transaction
+{
+    class Account
+    {
+        double deposite = 0;
+        double ammount = 500;
+        double withdraw = 0;
+        string strcon;
+        public void Services()
+        {
+            
+            do
+            {
+                Console.WriteLine("Enter your choice:\n1.Deposit\n2.Withdraw\n3.Check Balance\n4.Mini Statement");
+                char ch = Convert.ToChar(Console.ReadLine());
+                switch (ch)
+                {
+                    case '1':
+                        Deposite();
+                        break;
+                    case '2':
+                        Withdraw();
+                        break;
+                    case '3':
+                        Checkbalence();
+                        break;
+                    case '4':
+                        MiniStatements();
+                        break;
+                }
+
+                Console.WriteLine("If You continue press yes,Otherwise Press No..");
+                strcon = Console.ReadLine();
+
+
+            } while ((strcon == "yes") || (strcon == "YES"));
+        }
+        public void Deposite() {
+            Console.WriteLine("enter deposit ammount:");
+            deposite = Convert.ToDouble(Console.ReadLine());
+           
+            ammount = ammount + deposite;
+            Console.WriteLine("your deposited successfully current ammount is:" + ammount);
+        }
+        public void Withdraw() {
+            Console.WriteLine("Welcome to Withdraw Section.\nEnter Withdra Ammount");
+            withdraw = Convert.ToDouble(Console.ReadLine());
+            if (withdraw <= ammount)
+            {
+                ammount = ammount - withdraw;
+                Console.WriteLine("Your withdraw process is successfully compleed\n current ammount is:" + ammount);
+            }
+            else
+            {
+                Console.WriteLine("Inssuficient Founds");
+            }
+        }
+        public void Checkbalence() {
+            Console.WriteLine("Your Current Balence is:" + ammount);
+        }
+        public void MiniStatements() {
+            Console.WriteLine("Mini Statements is:\n1.previous Deposit ammount is:{0}\n2.prvious Withdraw ammount is:{1}\n3.Current Balence is:{2}", deposite, withdraw, ammount);
+        }
+    }
+}

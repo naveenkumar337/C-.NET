@@ -1,0 +1,112 @@
+pallindrome:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace pallindrome
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int num; 
+	    int temp;
+            int result = 0;
+	    int rem = 0;
+            Console.WriteLine("Enter number:");
+            num =Convert.ToInt32(Console.ReadLine());
+            temp = num;
+            while (num != 0) 
+	    {
+                rem = num % 10;
+                result = result * 10 + rem;
+                num = num / 10;
+            }
+            if (temp == result)
+            {
+                Console.WriteLine("Given number is palindrome..");
+
+            }
+            else
+	    {
+                Console.WriteLine("Given number is not pallimdrome..");
+
+            }
+            Console.ReadKey();
+        }
+    }
+}
+
+
+evenandodd:
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Odd_and_Even
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int no;
+            Console.WriteLine("enter number");
+
+            no =Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("odd numbers:");
+            for (int i = 1; i < no; i = i + 2) 
+	    {
+                Console.Write(i+" ");
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("Even numbers:");
+            for (int i = 2; i < no; i = i + 2) 
+	    {
+                Console.Write(i + " ");
+            }
+            Console.ReadKey();
+        }
+    }
+}
+
+
+factorial:
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace factorial
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int number;
+            int fact = num;
+            Console.WriteLine("enter number to find factorial");
+            number = Convert.ToInt32(Console.ReadLine());
+            for (int i = 2; i < number; i++) 
+	    {
+                fact = fact * i;
+            }
+            Console.WriteLine("factorial value is:{0}",fact);
+            Console.ReadKey();
+            
+        }
+    }
+}
+
+
+

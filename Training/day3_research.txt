@@ -1,0 +1,31 @@
+How we can differentiate between stand alone application and web application?
+Ans:
+stand alone environmnet/console applications/Window applications:
+
+console applications doesn’t have any graphical user interface. Console Applications will have character based interface.   
+Windows Application is a user build application that can run on a Windows platform. The windows application has a graphical user interface that is provided by Windows Forms.
+
+1. It is a single tier application. here presentation layer,bussiness layer and database layer will be present client server. 
+2. when software is intalled in stand alone environment,that can use only one person at a time.
+3. it was installed in physical place so,it can use only on that palce.
+
+web based application:- 
+1.It is three tier application. Presentation layer will be present in client server ,business layer will be present in application server and database layer will be present 
+  is database server.Mainly it is used whenever the application can accessed all over the world with minimum no.of users.On that time we case use the web based application.
+2. when we insstalled software into server no.of peopeles can use at a time. 
+3. it was intalled in server so we can use any time,any whare by using internet.
+
+URL:https://www.avestagroup.net/DetailsEN.aspx?PostID=1006&CataType=5&CataID=1006
+
+Browsers ?
+ans:
+It’s a computer program that utilizes web browsers and web technology to perform tasks over the Internet. 
+
+1.this is act as client and server for web appliaction.
+2.it very usefull for sending and receving information to the server.
+3.it is better the stand alone application.
+4.easy to maitain. 
+
+Webapplication working process?
+1.it was communicate by using HTTP protocol.
+

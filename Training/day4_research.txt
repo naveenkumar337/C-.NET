@@ -1,0 +1,95 @@
+Web Server:
+1.Web server is a computer where the web content is stored. Basically web server is used to host the web sites but there exists other web servers also such as gaming, storage, FTP, email etc.
+2.Web site is collection of web pages whileweb server is a software that respond to the request for web resources.
+3.Wes Server working in tow ways: one is sending request via URL,recive the response via scripting file or page with communicating with database.
+4.When client sends request for a web page, the web server search for the requested page if requested page is found then it will send it to client with an HTTP response.
+5.If the requested web page is not found, web server will the send an HTTP response:Error 404 Not found.
+
+Types of Web Server's:
+1.Apache HTTP Server
+     When a visitor wants to load a page on your website, for instance, the homepage or your “About Us” page, their browser sends a request to your server and Apache returns
+	a response with all the requested files (text, images, etc.).
+	Apache has modules for security, caching, URL rewriting, password authentication, and more. You can also set up your own server configurations through a file called .htaccess,
+	 
+  Apache uses:   URL rewriting,IPv6-compatible,user and session tracking,XML support,FTP support.
+	Apache virtual machine will have the following software:Ubuntu 14.04,Apache,MySQL,PHP 5
+
+2.IIS(Internet Information Services):
+The Internet Information Server (IIS) is a high performance Web Server from Microsoft.
+This web server runs on Windows platforms, it is tightly integrated with os.
+
+IIS machine's software will look like this: Windows Server 2012,IIS 8.0,MSSQL,ASP .NET 4.5.
+
+Apache vs IIS:
+Unlike Apache, IIS is installed on Windows operating systems and its applications are using ASP.NET and MSSQL databases. 
+According to some tests, IIS is faster than Apache. It consumes less CPU,has better response time and can handle more requests per second.
+
+3.Sun Java System Web ServerL:
+	This web server from Sun Microsystems is suited for medium and large web sites. Though the server is free it is not open source.
+        It however, runs on Windows, Linux and UNIX platforms. The Sun Java System web server supports various languages, scripts 
+	and technologies required for Web 2.0 such as JSP, Java Servlets, PHP, Perl, Python, and Ruby on Rails, ASP and Coldfusion etc
+
+4.Jigsaw server
+
+
+
+HTML:
+
+HTML stands for Hyper Text Markup Language, which is the most widely used language on Web to develop web pages. 
+Hypertext refers to the way in which Web pages (HTML documents) are linked together. Thus, the link available on a webpage is called Hypertext.
+ HTML was developed with the intent of defining the structure of documents like headings, paragraphs, lists, and so forth to facilitate the sharing of scientific information between researchers.
+latest version of Html is HTML5.
+html syntax:
+<html>
+<title>......</title>
+<head>.......</head>
+<body>
+tegs....
+</body>
+</html>
+
+Html Tags:
+<p>-paragraph tag,
+<div>-division tag,
+<h1>--<h6>-heading tags,
+<a></a>-anchor tag/link tag,etc...
+
+usage of HTML:
+	HTML code ensures the proper formatting of text and images so that your Internet browser may display them as they are intended to look. Without HTML, 
+        a browser would not know how to display text as elements or load images or other elements. HTML also provides a basic structure of the page, 
+	upon which Cascading Style Sheets are overlaid to change its appearance. One could think of HTML as the bones (structure) of a web page, and CSS as its skin (appearance).
+
+About IDE:
+An integrated development environment (IDE) is a software application that provides comprehensive facilities to computer
+ programmers for software development
+ex:Eclipse,Netbeans,Visual Studio,etc..
+Integrated development environments are designed to maximize programmer productivity.
+ Dartmouth BASIC was the first language to be created with an IDE.
+usefull for:- syntax highlighting,code completion,refactoring,version controle,debugging,code search,language support.
+
+Syntax:
+
+1.syntax of a computer language is the set of rules that defines the combinations of symbols that are considered to be a correctly 
+  structured document or fragment in that language.
+2.As a fresher if you known the syntax of the program,it is better to grown in that language.
+
+Syntax Error:
+	If you do not follow the rules defined by the programing language, then at the time of compilation, you will get syntax errors and the program will not be compiled.
+
+ #include <stdio.h>
+main() {
+   printf("Hello, World!")
+}
+error:syntax error- ";" is missing
+
+C# syntax:
+
+using system;
+namespace <namespace name>
+{
+class <classname>
+{
+//declaration of variables
+//declaration f methods
+}
+}

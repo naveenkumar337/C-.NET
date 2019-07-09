@@ -1,0 +1,119 @@
+Account.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Banking_Transaction
+{
+    class Account
+    {
+        int deposite = 0;
+        int ammount = 500;
+        int withdraw = 0;
+        string strcon;
+        List<int> li = new List<int>();
+        List<int> li1 = new List<int>();
+        public void Services()
+        {
+           
+            do
+            {
+                Console.WriteLine("Enter your choice:\n1.Deposit\n2.Withdraw\n3.Check Balance\n4.Mini Statement");
+                char ch = Convert.ToChar(Console.ReadLine());
+                switch (ch)
+                {
+                    case '1':
+                        Deposite();
+                        break;
+                    case '2':
+                        Withdraw();
+                        break;
+                    case '3':
+                        Checkbalence();
+                        break;
+                    case '4':
+                        MiniStatements();
+                        break;
+                }
+
+                Console.WriteLine("If You continue press yes,Otherwise Press No..");
+                strcon = Console.ReadLine();
+
+
+            } while ((strcon == "yes") || (strcon == "YES"));
+        }
+        public void Deposite() {
+            Console.WriteLine("enter deposit ammount:");
+            deposite = Convert.ToInt32(Console.ReadLine());
+            
+            li.Add(deposite);
+            ammount = ammount + deposite;
+            Console.WriteLine("your deposited successfully current ammount is:" + ammount);
+        }
+        public void Withdraw() {
+            Console.WriteLine("Welcome to Withdraw Section.\nEnter Withdra Ammount");
+            withdraw = Convert.ToInt32(Console.ReadLine());
+            li1.Add(withdraw);
+            if (withdraw <= ammount)
+            {
+                ammount = ammount - withdraw;
+                Console.WriteLine("Your withdraw process is successfully compleed\n current ammount is:" + ammount);
+            }
+            else
+            {
+                Console.WriteLine("Inssuficient Founds");
+            }
+        }
+        public void Checkbalence() {
+            Console.WriteLine("Your Current Balence is:" + ammount);
+        }
+        public void MiniStatements() {
+            Console.WriteLine("Mini Statements is:\n Deposit history is:");
+            foreach (int i in li) {
+                Console.WriteLine(i);
+                    }
+            Console.WriteLine("withdraw history is");
+            foreach (int i in li1) {
+                Console.WriteLine(i);
+            }
+
+            Console.WriteLine("Your Current balence is :" + ammount);
+        }
+    }
+}
+
+
+Program.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Banking_Transaction
+{
+         
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter Account number:");
+            double accountno = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter Name Of The Account Holder :");
+            string strname = Console.ReadLine();
+
+            
+            Account ac = new Account();
+            ac.Services();
+
+            Console.WriteLine("***Thanks For Using Banking Services***");
+       
+          Console.ReadLine();
+        }
+        
+    }
+}
