@@ -1,0 +1,33 @@
+Creating a file:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+
+namespace Day6_Create_file
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            FileStream fs = new FileStream(@"D:\\data.txt", FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+	    Console.WriteLine("for exit Press '#'...");
+            Console.WriteLine("Enter your text");
+            char str =Convert.ToChar(Console.Read());
+            while (str !='#')
+            {
+                sw.Write(str);
+                str =Convert.ToChar(Console.Read());
+               
+            }
+            sw.Close();
+            fs.Close();
+
+        }
+    }
+}

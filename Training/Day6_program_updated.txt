@@ -1,0 +1,80 @@
+Mystack.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace stack
+{
+    class Mystack<T>
+    {
+        private int _top=0;
+        private T[] list;
+        private int _size;
+      
+        public Mystack(int size) {
+            _size = size;
+            list = new T[_size];
+            _top = -1;
+        }
+        public void Push(T ele) {
+            if (_top == _size - 1) {
+                throw new Exception("stack is overflow");
+                            }
+            list[++_top] = ele;
+        }
+        public T pop() {
+            if (_top == -1) {
+                throw new Exception("stack is underflow");
+            }
+            return list[_top--];
+        }
+        public int Count() {
+            return _top + 1;
+        }
+        public void Peek() {
+            Console.WriteLine("peek eleent is" + list[_top]);
+        }
+    
+    }
+}
+
+
+Program.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace stack
+{
+    class Program { 
+        static void Main(string[] args)
+        {
+            Mystack<int> stack = new Mystack<int>(3);
+            stack.Push(90);
+            stack.Push(12);
+            stack.Push(45);
+            Console.WriteLine(stack.pop());
+            stack.Peek();
+            Mystack<string> sstack = new Mystack<string>(3);
+            sstack.Push("dharani");
+            sstack.Push("info");
+            sstack.Push("tech");
+            Console.WriteLine(sstack.pop());
+            Mystack<char> cstack = new Mystack<char>(3);
+            cstack.Push('c');
+            cstack.Push('d');
+            cstack.Push('f');
+            Console.WriteLine(sstack.pop());
+
+            Console.ReadKey();
+
+        
+        }
+    }
+}

@@ -1,0 +1,129 @@
+LINQ (Language Integrated Query) is uniform query syntax in C# and VB.NET to retrieve data from different sources and formats.
+For example, SQL is a Structured Query Language used to save and retrieve data from a database. In the same way, LINQ is a structured query syntax built in C# and VB.NET to retrieve data from different types of data sources such as collections, ADO.Net DataSet, XML Docs, web service and MS SQL Server and other databases.
+LINQ queries return results as objects. It enables you to uses object-oriented approach on the result set and not to worry about transforming diffent formats of results into objects.
+Introduced in Visual Studio 2008 and designed by Anders Hejlsberg, LINQ (Language Integrated Query) allows writing queries even without the knowledge of query languages like SQL, XML etc. LINQ queries can be written for diverse data types.
+Syntax of LINQ:
+var longwords = from w in words where w.length > 10;
+
+Types of LINQ:
+LINQ to Objects
+LINQ to XML(XLINQ)
+LINQ to DataSet
+LINQ to SQL (DLINQ)
+LINQ to Entities
+
+To access standard LINQ query operators, the namespace System.Query should be imported by default.
+Prior to LINQ, it was essential to learn C#, SQL, and various APIs that bind together the both to form a complete application. Since, these data sources and programming languages face an impedance mismatch; a need of short coding is felt.
+
+Advantages of LINQ:
+LINQ offers syntax highlighting that proves helpful to find out mistakes during design time.
+LINQ offers IntelliSense which means writing more accurate queries easily.
+Writing codes is quite faster in LINQ and thus development time also gets reduced significantly.
+LINQ makes easy debugging due to its integration in the C# language.
+LINQ offers easy transformation for conversion of one data type to another like transforming SQL data to XML data.
+LINQ to XML has its power in the System.Xml.Linq namespace. This has all the 19 necessary classes to work with XML.
+
+Ajax:
+
+AJAX stands for Asynchronous JavaScript and XML. AJAX is a new technique for creating better, faster, and more interactive web applications with the help of XML, HTML, CSS, and Java Script.
+AJAX is not a programming language.
+AJAX allows web pages to be updated asynchronously by exchanging data with a web server behind the scenes. This means that it is possible to update parts of a web page, without reloading the whole page.
+Conventional web applications transmit information to and from the sever using synchronous requests. It means you fill out a form, hit submit, and get directed to a new page with new information from the server.
+AJAX is Based on Open Standards:
+Browser-based presentation using HTML and Cascading Style Sheets (CSS).
+Data is stored in XML format and fetched from the server.
+Behind-the-scenes data fetches using XMLHttpRequest objects in the browser.
+JavaScript to make everything happen.
+Ajax Examples:
+Google Maps
+Google Suggest
+Gmail
+https://www.tutorialspoint.com/ajax/ajaxCGI.php?num1=12&num2=12&result=&semajax=Standard
+
+Bootstrap:
+
+Bootstrap is the most popular HTML, CSS, and JavaScript framework for developing responsive, mobile-first websites.
+It powerful mobile first front-end framework for faster and easier web development. It uses HTML, CSS and Javascript.
+Bootstrap was developed by Mark Otto and Jacob Thornton at Twitter. It was released as an open source product in August 2011 on GitHub.
+Bootstrap's responsive CSS adjusts to Desktops, Tablets and Mobiles.
+What Bootstrap Package Includes:
+	Scaffolding
+	CSS
+	Components 
+	JavaScript Plugins
+	Customize
+Responsive image:
+<img src = "..." class = "img-responsive" alt = "Responsive image">
+Bootstrap.css file
+@media (min-width: 768px) {
+   .container {
+      width: 750px;
+   }
+}
+
+CDN URL:
+https://getbootstrap.com/docs/4.2/getting-started/introduction/
+Srtiped Table:
+<table class = "table table-striped">
+ 
+Besically the Bootstap features declare in .Class file.
+ex:<div class = "dropdown">
+Buttons can declare like:
+<div class = "btn-group">
+   
+   <button type = "button" class = "btn btn-default">Button 1</button>
+   <button type = "button" class = "btn btn-default">Button 2</button>
+   <button type = "button" class = "btn btn-default">Button 3</button>
+   
+</div>
+
+
+XPATH:
+XPath is a major element in the XSLT standard.
+XPath can be used to navigate through elements and attributes in an XML document.
+XPath uses "path like" syntax to identify and navigate nodes in an XML document
+There are functions for string values, numeric values, booleans, date and time comparison, node manipulation, sequence manipulation, and much more.
+Today XPath expressions can also be used in JavaScript, Java, XML Schema, PHP, Python, C and C++, and lots of other languages.
+In XPath, there are seven kinds of nodes: element, attribute, text, namespace, processing-instruction, comment, and document nodes.
+XPath Expression:
+/bookstore/book[1]
+Selecting Nodes:
+nodename	Selects all nodes with the name "nodename"
+/		Selects from the root node
+//		Selects nodes in the document from the current node that match the selection no matter where they are
+.		Selects the current node
+..		Selects the parent of the current node
+@
+
+Unfortunately, there are different ways of dealing with XPath in different browsers.
+Chrome, Firefox, Edge, Opera, and Safari use the evaluate() method to select nodes:
+xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE,null);
+Internet Explorer uses the selectNodes() method to select node:
+xmlDoc.selectNodes(xpath);
+
+Regular Expresion:
+
+Regular expressions are a pattern matching standard for string parsing and replacement and is a way for a computer user to express how a computer program should look for a specified pattern in text and then what the program is to do when each pattern match is found.
+Regex Syntax:
+Quantifiers:The most important quantifiers are 
+*-Matches the preceding character zero or more times.
+?-Matches the preceding char zero or one time.
++-Matches the preceding character 1 or more times.
+
+Special characters:
+^ => It is used to match the beginning of a string.
+$=> It is used to match the end of a string.
+(Dot) => Matches any character only once.
+\d => It is used to match a digit character.
+\w => It is used to match an alphanumeric character plus "_".
+\s => Matches white space characters.
+\S => Matches a non-white space character.
+
+Character classe:
+[ ] => It is used to match a range of characters.
+
+Grouping and alternatives:
+()=> It is used to group expressions.
+{} =>It is used to match the preceding character for a specified number of times.
+
+

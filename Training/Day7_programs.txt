@@ -1,0 +1,148 @@
+Copy OneFileToAnother:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace Day7_CopyContent
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+             string fs = @"D:\data.txt";
+            FileStream fs1 = new FileStream(@"D:\data1.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                       
+            try
+            {
+                StreamWriter swri = new StreamWriter(fs1);
+
+                string[] str = File.ReadAllLines(fs);
+                foreach (string str1 in str)
+                {
+                    swri.WriteLine(str1);
+                }
+
+                swri.Close();
+
+
+                fs1.Close();
+            }
+            catch(Exception ex) {
+                Console.WriteLine(ex);
+            }
+          Console.ReadKey()  ;
+        }
+    }
+}
+
+
+Create And Save a File :
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace Day6_Create_file
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            FileStream fs = new FileStream(@"D:\\data.txt", FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            Console.WriteLine("Enter your text");
+            string str = Console.ReadLine();
+            while (str != string.Empty)
+            {
+                sw.WriteLine(str);
+                str = Console.ReadLine();
+            }
+            sw.Close();
+            fs.Close();
+
+        }
+    }
+}
+
+
+
+Parallel Thead:'
+
+Program.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+
+namespace Day7_ParallelThread
+{
+    class Program
+    {
+        
+        static void Main(string[] args)
+        {
+            Console.WriteLine("enter a number:");
+          int   n = Convert.ToInt32(Console.ReadLine());
+            Mytread mth = new Mytread(n);
+            Thread th = new Thread(new ThreadStart(mth.even));
+            Thread th1 = new Thread(new ThreadStart(mth.odd));
+            th.Start();
+            th1.Start();
+            Console.ReadKey();
+        }
+       
+    }
+}
+
+
+Mythread.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Day7_ParallelThread
+{
+    class Mytread
+    {
+        static int n;
+
+        public Mytread(int num) {
+            n = num;
+        }
+
+      public   void even()
+        {
+           
+            
+            for (int i = 1; i <= n; i++)
+            {
+                if ((i % 2) == 0)
+                    Console.WriteLine("even :" + i);
+            }
+        }
+       public  void odd()
+        {
+            for (int i = 1; i <= n; i++)
+            {
+                if ((i % 2) != 0)
+                {
+                    Console.WriteLine("odd :" + i);
+                }
+            }
+        }
+    }
+}

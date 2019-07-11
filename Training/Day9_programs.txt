@@ -1,0 +1,110 @@
+
+create table Train_Customer(Id int,FirstName varchar(100),LastName varchar(100),City varchar(50),Country varchar(50),Phone int)
+create table Train_Orders(OrderId int,Customerid int,OrderDate date)
+
+insert into Train_Customer values(01,'naveen','kumar','ATP','India',9133827)
+insert into Train_Customer values(02,'sham','barbej','amerika','UK',01569832)
+insert into Train_Customer values(03,'ram','babu','Manchester','london',059687452)
+insert into Train_Customer values(04,'ana','khan','Shanghai','china',861065529)
+insert into Train_Customer values(05,'sam','sundher','london','england',456789)
+
+
+insert into Train_Orders values(001,01,'11-7-2019')
+insert into Train_Orders values(003,02,'10-5-2011')
+insert into Train_Orders values(002,01,'09-3-1998')
+
+
+--Write select statement to fetch all the records from table
+
+select * from Train_Customer
+select * from Train_Orders
+
+--Write select statement to fetch Firstname,LastName and City
+
+select FirstName,LastName,City from Train_Customer
+
+--Write update statement to change the Phone number of Ana
+
+update Train_Customer set Phone=2569123 where FirstName='ana'
+select * from Train_Customer
+
+--Write select statement to fetch customers from London city.
+
+select * from Train_Customer where City='london'
+
+--Write select statement to sort the customers on firstname
+
+select * from Train_Customer Order by FirstName ASC
+
+--Write delete statement to delete the customers on Country UK
+
+delete from Train_Customer where Country='UK'
+select * from Train_Customer
+
+--Write query retrieve the customers who have the orders
+
+select * from Train_Customer as c join Train_Orders as d on c.Id=d.Customerid
+select *from Train_Customer,Train_Orders where id=Customerid
+
+--Write query to show the customers without orders
+
+select * from Train_Customer where not exists( select null from Train_Orders where Id=Customerid) 
+
+
+
+Upper and Lower Triangle:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UpperandLower_triangle
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("enter size of the matrix:");
+            int size = Convert.ToInt32(Console.ReadLine());
+            int[,] arr = new int[size,size];
+            Console.WriteLine("enter " + size +"*"+ size + " matrix values");
+
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    arr[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+
+
+            Console.WriteLine("Upper Triangle is:");
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j <=i; j++) {
+                    Console.Write(arr[i,j]);
+                    
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            Console.WriteLine("Lower Triangle");
+            for (int i = 0; i<3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (i <= j)
+                    {
+                        Console.Write(arr[i, j]);
+                    }
+                    else {
+                        Console.Write(" ");
+                    }
+                }
+                Console.WriteLine();
+            }
+            Console.ReadKey();
+        }
+    }
+}
+
+
+
+

@@ -1,0 +1,112 @@
+XML:
+
+XML stands for Extensible Markup Language and is a text-based markup language derived from Standard Generalized Markup Language (SGML).
+Since xml supports UNICODE, all most all the human readable written languages can be communicated using xml.
+It can be used to render data structure, i.e. records and lists and trees.
+XML is self-documenting, i.e. it contains data and description about the data.
+XML is extensible 
+XML carries the data, does not present it
+XML is a public standard
+XML can work behind the scene to simplify the creation of HTML documents for large web sites.
+XML is a markup language that defines set of rules for encoding documents in a format that is both human-readable and machine-readable.
+
+To link XML files with CSS, you should use the following syntax:
+<?xml-stylesheet type="text/css" href="cssemployee.css"?> 
+
+XML Validation
+XML file can be validated by 2 ways:
+against DTD
+against XSD
+
+DTD(document type definition):
+Its main purpose is to define the structure of an XML document. It contains a list of legal elements and define the structure with the help of them.
+
+<?xml version="1.0"?>  
+<!DOCTYPE employee SYSTEM "employee.dtd">  
+<employee>  
+  <firstname>vimal</firstname>  
+  <lastname>jaiswal</lastname>  
+  <email>vimal@javatpoint.com</email>  
+</employee>  
+
+employee.dtd
+
+<!ELEMENT employee (firstname,lastname,email)>  
+<!ELEMENT firstname (#PCDATA)>  
+<!ELEMENT lastname (#PCDATA)>  
+<!ELEMENT email (#PCDATA)>  
+
+XSD(XML schema definition):
+XML schema is a language which is used for expressing constraint about XML documents.
+<?xml version="1.0"?>  
+<employee  
+xmlns="http://www.javatpoint.com"  
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+xsi:schemaLocation="http://www.javatpoint.com employee.xsd">  
+  <firstname>vimal</firstname>  
+  <lastname>jaiswal</lastname>  
+  <email>vimal@javatpoint.com</email>  
+</employee>  
+
+employee.xsd
+
+<?xml version="1.0"?>  
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  
+targetNamespace="http://www.javatpoint.com"  
+xmlns="http://www.javatpoint.com"  
+elementFormDefault="qualified">  
+  
+<xs:element name="employee">  
+  <xs:complexType>  
+    <xs:sequence>  
+      <xs:element name="firstname" type="xs:string"/>  
+      <xs:element name="lastname" type="xs:string"/>  
+      <xs:element name="email" type="xs:string"/>  
+    </xs:sequence>  
+  </xs:complexType>  
+</xs:element>  
+  
+</xs:schema>  
+
+JSON:
+JSON: JavaScript Object Notation.
+JSON is a syntax for storing and exchanging data.
+JSON is text, written with JavaScript object notation.
+When exchanging data between a browser and a server, the data can only be text.
+JSON is text, and we can convert any JavaScript object into JSON, and send JSON to the server.
+We can also convert any JSON received from the server into JavaScript objects.
+// Storing data:
+myObj = {name: "John", age: 31, city: "New York"};
+myJSON = JSON.stringify(myObj);
+localStorage.setItem("testJSON", myJSON);
+Since the JSON format is text only, it can easily be sent to and from a server, and used as a data format by any programming language.
+JSON Syntax Rules:
+Data is in name/value pairs
+Data is separated by commas
+Curly braces hold objects
+Square brackets hold arrays
+
+We can implement JSON Serialization/Deserialization in the following three ways:
+Using JavaScriptSerializer class
+Using DataContractJsonSerializer class
+Using JSON.NET library 
+DataContractJsonSerializer class helps to serialize and deserialize JSON. It is present in namespace System.Runtime.Serialization.Json which is available in assembly System.Runtime.Serialization.dll. Using the class we can serialize an object into JSON data and deserialize JSON data into an object.
+In Serialization, it converts a custom .Net object to a JSON string.
+Using JavaScriptJsonSerializer:
+JavaScriptSerializer is a class which helps to serialize and deserialize JSON. It is present in namespace System.Web.Script.Serialization which is available in assembly System.Web.Extensions.dll. To serialize a .Net object to JSON string use Serialize method. It's possible to deserialize JSON string to .Net object using Deserialize<T> or DeserializeObject methods. Let's see how to implement serialization and deserialization using JavaScriptSerializer.
+JavaScriptSerializer js = new JavaScriptSerializer();  
+string jsonData = js.Serialize(bsObj);
+DeSerializable:
+JavaScriptSerializer js = new JavaScriptSerializer();  
+BlogSites blogObject = js.Deserialize<BlogSites>(jsonData);  
+string name = blogObject.Name;  
+string description = blogObject.Description;  
+
+Using Json.NET:
+Serialization:
+string jsonData = JsonConvert.SerializeObject(bsObj);  
+Response.Write(jsonData);  
+Deserialization:
+BlogSites bsObj = JsonConvert.DeserializeObject<BlogSites>(json);  
+Response.Write(bsObj.Name);  
+

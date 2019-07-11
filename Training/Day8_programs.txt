@@ -1,0 +1,241 @@
+Color changing:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script type="text/javascript">
+        function main() {
+            var num = document.getElementById("ddlist").options[document.getElementById("ddlist").selectedIndex].text;
+           
+            document.getElementById("para").style.color=num;
+        }
+    </script>
+    
+</head>
+<body>
+    <form align="center">
+        <p id="para">
+            welcome to dharani info tech..
+        </p>
+        <div>
+            <select id="ddlist">
+                <option style="color:blue" value="blue" >blue</option>
+                <option id="one" style="color:red" value="red" >red</option>
+                <option style="color:green" value="green" onclick="blue()">green</option>
+              
+            </select>
+            <input type="button" onclick="main()"  value="submit" >   
+           
+             </div>
+    </form>
+
+</body>
+</html>
+
+
+Time Table:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <H1><FONT COLOR="DARKCYAN"><CENTER>COLLEGE TIME TABLE</FONT></H1>
+    <table border="2" cellspacing="3" align="center">
+        <tr>
+            <td align="center">
+            <td>8:30-9:30</td>
+            <td>9:30-10:30</td>
+            <td>10:3-11:30</td>
+            <td>11:30-12:30</td>
+            <td>12:30-2:00</td>
+            <td>2:00-3:00</td>
+            <td>3:00-4:00</td>
+            <td>4:00-5:00</td>
+        </tr>
+        <tr>
+            <td align="center">MONDAY</td>
+            <td align="center">---</td>
+            <td align="center"><font color="blue">SUB1<br></td>
+            <td align="center"><font color="pink">SUB2<br></td>
+            <td align="center"><font color="red">SUB3<br></td>
+            <td rowspan="6" align="center">L<br>U<br>N<br>C<br>H</td>
+            <td align="center"><font color="maroon">SUB4<br></td>
+            <td align="center"><font color="brown">SUB5<br></td>
+            <td align="center">counselling class</td>
+        </tr>
+        <tr>
+            <td align="center">TUESDAY</td>
+            <td align="center"><font color="blue">SUB1<br></td>
+            <td align="center"><font color="red">SUB2<br></td>
+            <td align="center"><font color="pink">SUB3<br></td>
+            <td align="center">---</td>
+            <td align="center"><font color="orange">SUB4<BR></td>
+            <td align="center"><font color="maroon">SUB5<br></td>
+            <td align="center">library</td>
+        </tr>
+        <tr>
+            <td align="center">WEDNESDAY</td>
+            <td align="center"><font color="pink">SUB1<br></td>
+            <td align="center"><font color="orange">SUB2<BR></td>
+            <td align="center"><font color="brown">SWA<br></td>
+            <td align="center">---</td>
+            <td colspan="3" align="center"><font color="green"> lab</td>
+        </tr>
+        <tr>
+            <td align="center">THURSDAY</td>
+            <td align="center">SUB1<br></td>
+            <td align="center"><font color="brown">SUB2<br></td>
+            <td align="center"><font color="orange">SUB3<BR></td>
+            <td align="center">---</td>
+            <td align="center"><font color="blue">SUB4<br></td>
+            <td align="center"><font color="red">SUB5<br></td>
+            <td align="center">library</td>
+        </tr>
+        <tr>
+            <td align="center">FRIDAY
+            <td align="center"><font color="orange">SUB1<BR></td>
+            <td align="center"><font color="maroon">SUB2<br></td>
+            <td align="center"><font color="blue">SUB3<br></td>
+            <td align="center">---</td>
+            <td align="center"><font color="pink">SUB4<br></td>
+            <td align="center"><font color="brown">SUB5<br></td>
+            <td align="center">library</td>
+        </tr>
+        <tr>
+            <td align="center">SATURDAY</td>
+            <td align="center"><font color="red">SUB1<br></td>
+            <td colspan="3" align="center">seminar</td>
+            <td align="center"><font color="pink">SUB4<br></td>
+            <td align="center"><font color="brown">SUB5<br></td>
+            <td align="center">library</td>
+        </tr>
+</body>
+</html>
+
+
+ContentPage:
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body bgColor="clay" Text="blue" Link="blue" VLink="green" ALink="red">
+    <P align="center"><font SIZE="5"><B>content page of a BOOK</B></font></P>
+    <P align="center"><font FACE="verdana" SIZE="5"><B>.NET</B></font></P>
+    <ol>
+        <LI>Datatypes</LI>
+        <ul>
+            <li>Value Types</li>
+            <li>Reference Types</li>
+            <li>Object Types</li>
+            <li>Dynamic Types</li>
+            <li>String types</li>
+        </ul>
+        <li>Variables</li>
+        <ul>
+            <li>Defining Variables</li>
+            <li>Initilizing Variables</li>
+            <li>Accepting Values From User</li>
+           
+        </ul>
+        <li>Operators</li>
+        <ul>
+            <li>Arithmatic Operators</li>
+            <li>Logical Operators</li>
+            <li>Relational Operators</li>
+            <li>Bitwise Operators</li>
+            <li>Assignment Operators</li>
+        </ul>
+        <li>Methods</li>
+        <ul>
+            <li>Defining Methods</li>
+            <li>Calling Methods</li>
+            <li>Passing Parameter to Method</li>
+            <li>Passing parameter by value</li>
+            <li>passing parameter by reference</li>
+        </ul>
+        <li>Polymorphism</li>
+        <ul>
+            <li>Static polymorphism</li>
+            <li>Dynamic polymorphism</li>
+           
+        </ul>
+        <li>Classes</li>
+        <ul>
+            <li>Defining a class</li>
+            <li>Constructor</li>
+            <li>Destructor</li>
+            <li>WaterMelon</li>
+            <li>Static member of class</li>
+        </ul>
+    </ol>
+</body>
+</html>
+
+
+Arithmatic Operations:
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8 />
+    <title>JavaScript program to calculate multiplication and division of two numbers </title>
+    <style type="text/css">
+        body {
+            margin: 30px;
+        }
+    </style>
+    <script script type="text/javascript">
+
+        function Addition() {
+              num1 = document.getElementById("firstNumber").value;
+              num2 = document.getElementById("secondNumber").value;
+              var x = parseFloat(num1) + parseFloat(num2);
+              document.getElementById("result").innerHTML = x;
+ }
+        function Subtraction() {
+            num1 = document.getElementById("firstNumber").value;
+            num2 = document.getElementById("secondNumber").value;
+            var y = parseFloat(num1) - parseFloat(num2);
+            document.getElementById("result").innerHTML = y;
+        }
+        function multiplyBy() {
+            num1 = document.getElementById("firstNumber").value;
+            num2 = document.getElementById("secondNumber").value;
+            var z = parseFloat(num1) * parseFloat(num2);
+            document.getElementById("result").innerHTML = z;
+        }
+
+        function divideBy() {
+            num1 = document.getElementById("firstNumber").value;
+            num2 = document.getElementById("secondNumber").value;
+            var k = parseFloat(num1) / parseFloat(num2);
+            document.getElementById("result").innerHTML =k;
+        }
+       
+    </script>
+</head>
+<body>
+    <form>
+        1st Number : <input type="text" id="firstNumber" /><br>
+        2nd Number: <input type="text" id="secondNumber" /><br>
+        <input type="button" onclick="Addition()" value="Addition"/>
+        <input type="button" onclick="Subtraction()" value="Subtraction" />
+        <input type="button" onClick="multiplyBy()" Value="Multiply" />
+        <input type="button" onClick="divideBy()" Value="Divide" />
+    </form>
+    <p>
+        The Result is : <br>
+        <span id="result"></span>
+    </p>
+</body>
+</html>
