@@ -1,0 +1,51 @@
+
+Parsely validations:
+
+Parsley is a javascript form validation library. It helps you provide your users with feedback on their form submission before sending it to your server. It saves you bandwidth, server load and it saves time for your users.
+To use the Parsley, we need to first include their JS and CSS files. Keep a note that Parsley relies on jQuery(>=1.8), so we should first include jQuery and then Parsle
+you can either use parsley.js unminified file or parsley.min.js minified one. These files and extras are available here.
+Parsley adds many classes and elements in the DOM when it validates. You are strongly encouraged to customize them in your own stylesheets, but here is the "standard" Parsley css file that is used here on the documentation and examples, if you want to use it to bootstrap your projects with Parsley.
+<script src="jquery.js"></script>
+<script src="parsley.min.js"></script>
+
+<form id="form">
+...
+</form>
+
+<script>
+  $('#form').parsley();
+</script>
+
+Parsley is a decoupled library that uses different classes to do the heavy work.
+
+http://parsleyjs.org/doc/index.html
+data-parsley-required	
+data-parsley-required="true"	
+data-parsley-required="false"
+type="email"	
+data-parsley-type="email"
+data-parsley-type="number"
+
+IN CSS:
+<link rel="stylesheet" type="text/css" href="css/parsley.css">
+
+Parsley Form:
+<form parsley-validate></form>
+
+Parsley Field:
+<form parsley-validate>
+    <input type="text" name="email" parsley-type="email" />
+</form>
+
+
+Example:
+https://parsleyjs.org/doc/examples/customvalidator.html
+
+
+There is a growing community of tools integrating Parsley with other frameworks. If you create such a tool, please submit a pull request.
+Django
+Rails
+Wicket
+WTForms
+Cascade Framework
+

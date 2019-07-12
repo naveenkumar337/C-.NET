@@ -1,0 +1,18 @@
+--Create a strored procedure that takes orderid and provides the order details like, Customer Name, Order date and Ordered Item Details
+
+create PROCEDURE PROC_GetDetailsOrder1
+@OrderId int
+as
+select FirstName,OrderDate from Train_Customer,Train_Orders where id=( select Customerid from Train_Orders where OrderId=@OrderId)
+select * from Train_Items where ItemId=(select ItemId from Train_OrderDetails where OrderId=@OrderId) 
+go
+exec PROC_GetDetailsOrder1 2; 
+
+
+create PROCEDURE PROC_GetDetailsOrder2
+@OrderId int
+as
+select FirstName,OrderDate,ItemId,ItemName,price,QuantityAvailable from Train_Customer  join Train_Orders on Train_Customer.Id=Train_Orders.Customerid left join Train_Items on ItemId=@OrderId
+
+go
+exec PROC_GetDetailsOrder2 1; 

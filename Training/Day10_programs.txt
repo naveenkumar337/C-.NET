@@ -1,0 +1,53 @@
+
+
+
+
+
+
+
+
+CREATE TABLE Tb_Itm6(ItemId int Primary key,ItemName Varchar(10),Price int,Quantity Numeric);
+INSERT INTO Tb_Itm6 VALUES(01,'mobile',10000,30)
+INSERT INTO Tb_Itm6 VALUES(02,'laptop',30000,20)
+INSERT INTO Tb_Itm6 VALUES(03,'computer',50000,10)
+
+select * from Tb_Itm6
+
+CREATE TABLE Tb_OrdrDetails7(OrderDetailsId int,OrderId int Primary Key,ItemId int Foreign key References Tb_Itm6 (ItemId),Quantity Numeric)
+INSERT INTO Tb_OrdrDetails7 VALUES(30 ,55 , 2 ,10)
+INSERT INTO Tb_OrdrDetails7 VALUES(50 ,33 , 03 ,20)
+select * from Tb_OrdrDetails7
+
+CREATE TABLE Tb_OrdrLog6( Orderid int Foreign Key References  Tb_OrdrDetails7(OrderId) ,CustomerID int,OrderDate date,LogDate date)
+INSERT INTO Tb_OrdrLog6 VALUES(33, 510,'2019-08-01','2019-12-04')
+INSERT INTO Tb_OrdrLog6 VALUES(55,610,'2019-07-01','2019-11-04')
+select * from Tb_OrdrLog6
+
+alter FUNCTION  stock_items21(@item int)
+returns table
+AS
+
+return(select  * from Tb_Itm6 where ItemId<=@item)
+
+select * from stock_items21(1);
+
+create trigger VYSHU on torder2
+AFTER insert 
+as
+DECLARE @oDERDETAILiD INT;
+DECLARE @ORDERID INT;
+DECLARE @OrderDate Date;
+
+
+SELECT @oDERDETAILiD=i.ordreid from inserted i;
+select @ORDERID=i.customerid from inserted i;
+select @OrderDate=i.orderdate from inserted i;
+
+begin
+insert into Tb_OrdrLog6 values(@oDERDETAILiD,@ORDERID,@OrderDate,'12-3-1965')
+end
+
+insert into torder2 values(33,12,'12-3-1997')
+
+select * from Tb_OrdrLog6
+select * from torder2
