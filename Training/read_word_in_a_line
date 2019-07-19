@@ -1,0 +1,168 @@
+BY CREATING FILE:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Collections;
+
+namespace SearchWordinLine
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            List<string> li = new List<string>();
+            //List<int> intli = new List<int>();
+            //SortedList sl = new SortedList();
+            Console.WriteLine("enter text,after completion of work enter 'End End' in new line:");
+            StringBuilder sb = new StringBuilder("");
+            ArrayList arr=new ArrayList();
+           string str = Console.ReadLine();
+            while (str != "end end")
+            {
+                arr.Add(str);
+                str = Console.ReadLine();
+            }
+
+            Console.WriteLine("enter word for check:");
+            string check = Console.ReadLine();
+            
+            for (int j = 0; j < arr.Count; j++)
+            {
+                int count = 0;
+              
+
+                string data = arr[j].ToString();
+                    for (int p = 0; p < data.Length; p++)
+                    {
+                        if (data[p] != ' ')
+                        {
+                            sb.Append( data[p]);
+                            if (p == data.Length - 1)
+                            {
+                                li.Add(sb.ToString());
+                            sb.Clear();
+                            }
+                            else {
+                            }
+                        }
+                        
+                        else
+                        {
+                            li.Add(sb.ToString());
+                              sb.Clear();
+                        }
+                  }
+                foreach (string letter in li) {
+                   
+                    if (letter.ToLower() == check.ToLower())
+                    {
+                        count++;
+                    }
+                                   }
+                Console.WriteLine("line {0}:  no.of words: {1} ",j+1,count);
+                //sl.Add(j+1, count);
+                //intli.Add(count);
+                li.Clear();
+            }
+            //int large = intli.Max();
+            //for (int i=0;i<sl.Count;i++) {
+            //    if (Convert.ToInt32(sl.GetByIndex(i)) == large) {
+            //        Console.WriteLine("largest Words are in line is" + sl.GetKey(i));
+            //    }
+            //}
+            Console.ReadKey();
+         }
+    }
+}
+
+
+Using APP.CONFIG:
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Configuration;
+using System.IO;
+
+namespace configFIleGet
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                string name = ConfigurationSettings.AppSettings["link"];
+                List<string> li = new List<string>();
+
+                //List<int> intli = new List<int>();
+                int total = 0;
+                SortedSet<int> sr = new SortedSet<int>();
+                //SortedList<int,int> sl = new SortedList<int,int>();
+
+                string[] str = File.ReadAllLines(name);
+                Console.WriteLine("enter word to check:");
+                string check= Console.ReadLine();
+                for (int i = 0; i < str.Length; i++) {
+                    string word = "";
+                    int test = 0;
+
+                    string line = str[i];
+                    for (int j = 0; j < line.Length; j++) {
+                        if (line[j] != ' ')
+                        {
+                            word += line[j];
+                            if (j == line.Length-1)
+                            {
+                                li.Add(word);
+                                word = "";
+                            }
+                            else { }
+                                 
+                        }
+                        else {
+                            li.Add(word);
+                            word = "";
+
+                        }
+
+                    }
+                   
+                    foreach (string words in li) {
+                        if (words.ToLower() == check.ToLower()) {
+                            test=test+1;
+                            //
+                          //  total++;
+                        }
+                       
+
+                    }
+                    Console.WriteLine("Line :{0} no.of words are:{1}", i + 1, test);
+                    //sl.Add(i + 1, test);
+                    //intli.Add(test); 
+                    total =total+ li.Count;
+                    li.Clear();
+                }
+                // int t =Convert.ToInt32(sl.Max());
+                //    int t = sl.ContainsValue(95);
+                
+                    
+                //int large = intli.Max();
+                //int t = sl.IndexOfValue(large);
+                //Console.WriteLine();
+                //Console.WriteLine("highest searching words are in line:" + (t+1));
+                Console.WriteLine("totaly the no.of searching word in file is: " + total);
+                  
+                Console.ReadKey();
+            }
+            catch(Exception ex) {
+                
+            }
+        }
+    }
+}
