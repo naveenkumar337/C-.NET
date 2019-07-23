@@ -1,0 +1,134 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Net;
+using System.IO;
+using HtmlAgilityPack;
+using System.Web;
+namespace Get_tags
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        Dictionary<string, int> _My_dict2 =
+             new Dictionary<string, int>();
+        List<string> _li = new List<string>();
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //calling website via url
+            var web = new HtmlWeb();
+           
+            var doc = web.Load(textBox1.Text);
+            //save to called website in to file
+            FileStream fl = new FileStream("D:\\URL.txt", FileMode.OpenOrCreate);
+            doc.Save(fl);
+            //calling child node
+            var node = doc.DocumentNode.ChildNodes;
+            //checking each tag
+            foreach (var str in node)
+            {
+                if (str.NodeType == HtmlNodeType.Element)
+                {
+                //chiking the tag contain child tags or not
+                    var Childnode = str.ChildNodes;
+
+                    foreach (var str1 in Childnode)
+
+                    {
+                    //checking each tag have html tag or not
+                        HtmlNodeCollection nc = str1.ChildNodes;
+                        var sibling = str1;
+                        if (str1.NodeType == HtmlNodeType.Element)
+                        {
+                            _li.Add(str1.Name);
+                            //calling recursive method
+                            Get_tags(str1);
+                        }
+
+                    }
+
+                }
+            }
+            //var node = doc.DocumentNode.SelectSingleNode("//html");
+
+            //foreach (var nNode in node.DescendantNodes())
+            //{
+            //    if (nNode.NodeType == HtmlNodeType.Element)
+            //    {
+            //        _li.Add(nNode.Name);
+            //    }
+
+            //}
+            for (int i = 0; i < _li.Count; i++) {
+                int count=0;
+                for (int j = 0; j < _li.Count; j++) {
+                //compare each tag to another tag
+                    if (_li[i] == _li[j]) {
+                    //it's true tag count will be increase
+                        count++;
+                    }
+                }
+                //cheking existing tag
+                if (_My_dict2.ContainsKey(_li[i])) { }
+                else
+                {
+                    //             tag   ,repeated times
+                    _My_dict2.Add(_li[i], count);
+                }
+
+            }
+            foreach (var dtd in _My_dict2) {
+               //                        tag name                  no.of times repeated
+                richTextBox1.Text += "<"+dtd.Key+">     " + "====>  " + dtd.Value + "\n";
+            }
+
+     }
+//recursive mthod
+        public void Get_tags(HtmlNode str1)
+        {
+
+
+            var dg = str1.ChildNodes;
+            foreach (var k in dg)
+            {
+                if (k.NodeType == HtmlNodeType.Element)
+                {
+                //added to tag into list
+                    _li.Add(k.Name);
+                }
+                //cheking its has child tags 
+                if (k.HasChildNodes)
+                {
+                    if (k.NodeType == HtmlNodeType.Element)
+                    {
+                    //if found calling recursive
+                        Get_tags(k);
+                    }
+                }
+
+            }
+
+
+        }
+
+
+
+    }
+        }
+  
+           
+                   
+  
+ 
+          
+       
+
