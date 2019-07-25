@@ -1,0 +1,215 @@
+//Main class
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml;
+
+namespace Write_News_xml
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                XmlDocument xmldoc = new XmlDocument();
+                string _byteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
+                //load xml document from website
+                xmldoc.Load(textBox1.Text);
+                FileStream file = new FileStream("D:\\XmlDocument.xml", FileMode.OpenOrCreate);
+                xmldoc.Save(file);
+                //getting  data nodes
+                XmlNodeList list = xmldoc.DocumentElement.SelectNodes("//channel/item");
+            
+
+              //create xml form for list
+                using (XmlTextWriter xw = new XmlTextWriter("D:\\TodayNews.xml", Encoding.UTF8))
+                {
+                    //create xml form for the data(news)
+                    XmlTextWriter xw1 = new XmlTextWriter("D:\\News.xml", Encoding.UTF8);
+                    xw1.WriteStartElement("CompleteNews");
+                    foreach (XmlElement li in list)
+                    {
+                        var d = li.ChildNodes;
+                        var jd = d[2].InnerText;
+                        //insert data in to list xml file
+                        xw.WriteStartElement("TodayNews");
+
+                        xw.WriteStartElement("Title");
+                        xw.WriteString(d[0].InnerText);
+                        xw.WriteEndElement();
+                        xw.WriteStartElement("Description");
+                        xw.WriteString(d[1].InnerText);
+                        xw.WriteEndElement();
+                        xw.WriteStartElement("Link");
+                        xw.WriteString(d[2].InnerText);
+                        xw.WriteEndElement();
+                        xw.WriteEndElement();
+                        url_class cla = new url_class(d[2].InnerText);
+                        cla.Get_Details();
+                        //insert data into the news xml file
+                        
+                        
+                        xw1.WriteStartElement("News");
+
+                        xw1.WriteStartElement("URL");
+                        xw1.WriteString(cla.str2);
+                        xw1.WriteEndElement();
+
+                        xw1.WriteStartElement("Title");
+                        xw1.WriteString(cla.str3);
+                        xw1.WriteEndElement();
+
+                        xw1.WriteStartElement("Description");
+                        xw1.WriteString(cla.des);
+                        xw1.WriteEndElement();
+
+                        xw1.WriteStartElement("Images");
+                        xw1.WriteString(cla.image);
+                        xw1.WriteEndElement();
+                         
+                        xw1.WriteEndElement();//close news
+                      
+
+                    }
+                    xw1.WriteEndElement(); //close completeNews
+                    xw1.Close();//close file
+                    xw.Close();//close file
+
+                    if (xw == null || xw1 == null)
+                    {
+                        label1.Text = "data not inserted..";
+                    }
+                    else
+                    {
+                        label1.Text = "Data Inserted Successfully..";
+                    }
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                label1.Text = ex.ToString();
+            }
+        }
+    }
+}
+
+//sub class
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Net;
+using System.Xml;
+using HtmlAgilityPack;
+
+namespace Write_News_xml
+{
+    class url_class
+    {
+        public string str2;
+        public string str3;
+        public string des;
+        public string image;
+        public url_class(string str)
+        {
+            str2 = str;
+
+        }
+        public void Get_Details()
+        {
+
+            try
+            {
+                var list = new List<string>();
+                var web = new HtmlWeb();
+                var doc = web.Load(str2);
+                //  FileStream fl = new FileStream("D:\\URL1.txt", FileMode.OpenOrCreate);
+                //     doc.Save(fl);
+                //get title
+                var data = doc.DocumentNode.SelectSingleNode("//h1");
+                str3 = data.InnerText + "\n";
+                //get description
+                var nodes = doc.DocumentNode.SelectSingleNode("//div[@class='story-body__inner']");
+                if (nodes != null)
+                {
+                    foreach (HtmlNode node in nodes.ChildNodes)
+                    {
+                        if (node.Name == "figure")
+                        {
+
+                        }
+                        else
+                        {
+                            des += node.InnerText + "\n";
+                        }
+
+                    }
+                    //get images
+                    foreach (var nod in nodes.Descendants())
+                    {
+                        if (nod.Name == "div")
+                        {
+                            var list34 = nod.Attributes;
+                            if (list34.Contains("data-src"))
+                            {
+
+                                foreach (var jk in list34)
+                                {
+                                    if (jk.Name == "data-src")
+                                    {
+                                        if (jk.Value.Contains(".jpg"))
+                                        {
+                                            list.Add(jk.Value);
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }
+                        if (nod.Name == "img")
+                        {
+                            list.Add(nod.Attributes["src"].Value);
+                        }
+                    }
+                }
+
+            //getting image url's
+                foreach (var dataa in list)
+                {
+                    image += dataa + "\n";
+                    
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+
+        }
+    }
+}
+
