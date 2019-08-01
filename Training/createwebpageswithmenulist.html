@@ -1,0 +1,46 @@
+using System;
+using System.IO;
+using HtmlAgilityPack;
+
+namespace Website_Creation
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var doc = new HtmlDocument();
+            doc.Load("D:\\HTMLPAGE\\Underground12\\index.html");
+            doc.DocumentNode.SelectSingleNode("//link").SetAttributeValue("href", "D:\\HTMLPAGE\\Underground12\\images\\Underground.css");
+            doc.DocumentNode.SelectSingleNode("//img").SetAttributeValue("src", "D:\\HTMLPAGE\\Underground12\\images\\firefox-gray.jpg");
+            var node = doc.DocumentNode.SelectNodes("//div[@id='header']");
+            foreach (var k in node)
+            {
+                var childnode = k.Descendants();
+                
+                foreach (var k1 in childnode)
+                {
+                    if (k1.Name == "a")
+                    {
+                        var file = File.Create("D:\\HTMLPAGE\\" + k1.InnerText + ".html");
+                       
+                         var str = k1.ParentNode.ParentNode;
+                         var nodes = str.ChildNodes;
+                        foreach (var nod in nodes)
+                        {
+                            if (nod.NodeType == HtmlNodeType.Element)
+                            {
+                                var kj = nod.FirstChild.SetAttributeValue("href", nod.InnerText + ".html");
+                                
+                            }
+                        }
+                           doc.Save(file);
+                        file.Close();
+                               
+             }
+                }
+              
+            }
+            Console.ReadKey();
+        }
+    }
+}
