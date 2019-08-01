@@ -1,0 +1,226 @@
+using System;
+using System.Text;
+using System.Xml;
+using HtmlAgilityPack;
+using System.Xml.Serialization;
+using System.IO;
+using System.Net;
+using System.Linq;
+
+namespace ConsoleApplication3
+{
+    [Serializable, XmlRoot("rss")]
+    public class Urlset
+    {
+        [XmlArray("channel")]
+
+
+        public TodayNews[] news;
+    }
+    [XmlType("item")]
+    public class TodayNews
+    {
+        [XmlElement("title")]
+        public string title;
+        [XmlElement("description")]
+        public string description;
+        [XmlElement("link")]
+        public string link;
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            XmlSerializer ser = new XmlSerializer(typeof(Urlset));
+            Urlset set = new Urlset();
+            WebClient client = new WebClient();
+
+            string data = Encoding.Default.GetString(client.DownloadData("http://feeds.bbci.co.uk/news/world/rss.xml"));
+
+            try
+            {
+                Console.WriteLine("\n\n\n\n\n\n\n\n\n\t\t\t\t\t\tProcessing.....");
+                using (TextReader reader = new StringReader(data))
+                {
+                    Urlset red = (Urlset)ser.Deserialize(reader);
+                    int r = red.news.Count();
+
+                    HtmlDocument doc = new HtmlDocument();
+                    doc.Load("D:\\LINKPAGES\\Home.html");
+                    HtmlDocument doc1 = new HtmlDocument();
+                    doc1.Load("D:\\LINKPAGES\\Home.html");
+                    var htmlbody = doc1.DocumentNode.SelectSingleNode("//body/div[@id='wrap']/div[@id='main']");
+                    var body = doc.DocumentNode.SelectSingleNode("//body/div[@id='wrap']/div[@id='main']");
+                    var node = doc.DocumentNode.SelectNodes("//div[@id='header']");
+                    foreach (var k in node)
+                    {
+                        var childnode = k.Descendants();
+
+                        foreach (var k1 in childnode)
+                        {
+                            if (k1.Name == "a")
+                            {
+                                var file = File.Create("D:\\LINKPAGES\\" + k1.InnerText + ".html");
+
+                                var str = k1.ParentNode.ParentNode;
+                                var nodes = str.ChildNodes;
+                                foreach (var nod in nodes)
+                                {
+                                    if (nod.NodeType == HtmlNodeType.Element)
+                                    {
+                                        var kj = nod.FirstChild.SetAttributeValue("href", nod.InnerText + ".html");
+
+                                    }
+                                }
+                                if (k1.InnerText == "BBC")
+                                    {
+                                for (int i = 0; i < r; i++)
+                                {
+                                    if (body.Name == "div")
+                                    {
+                                        HtmlNode h4 = HtmlNode.CreateNode("<h4>" + red.news[i].title + "</h4>");
+                                        body.ChildNodes.Add(h4);
+                                        HtmlNode p = HtmlNode.CreateNode("<p>" + red.news[i].description + "</p>");
+                                        body.ChildNodes.Add(p);
+                                    }
+                                    }
+                                    doc.Save(file);
+                                }
+                                if (k1.InnerText == "USATODAY")
+                                {
+                                    for (int i = 0; i < r; i++)
+                                    {
+                                           url_class cla = new url_class(red.news[i].link);
+                                            cla.Get_Details();
+
+                                            if (htmlbody.Name == "div")
+                                            {
+
+                                                HtmlNode h3 = HtmlNode.CreateNode("<h3>" + cla.str3 + "</h3>");
+                                                htmlbody.ChildNodes.Add(h3);
+                                                HtmlNode p = HtmlNode.CreateNode("<p><a href='http://getfirefox.com/'><img src=" + cla.image + " width='100' height='120' alt='firefox' class='float - left'></a>" + cla.des + "</p>");
+                                               
+                                                htmlbody.ChildNodes.Add(p);
+
+                                             }
+                                        
+                                    }
+                                    doc1.Save(file);
+                                }
+                            }
+                        }
+                    }
+                 }
+            }
+            catch (Exception ex) {
+            }
+            Console.WriteLine("\n\t\t\t\t\t\tProcess Completed...");
+            Console.ReadKey();
+            }
+    }
+}
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using HtmlAgilityPack;
+using System.Xml;
+
+namespace ConsoleApplication3
+{
+    class url_class
+    {
+        public string str2;
+        public string str3;
+        public string des;
+        public string image;
+        public url_class(string str)
+        {
+            str2 = str;
+
+        }
+        public void Get_Details()
+        {
+
+            try
+            {
+                var list = new List<string>();
+                var web = new HtmlWeb();
+                var doc = web.Load(str2);
+                //  FileStream fl = new FileStream("D:\\URL1.txt", FileMode.OpenOrCreate);
+                //     doc.Save(fl);
+                //get title
+                var data = doc.DocumentNode.SelectSingleNode("//h1");
+                str3 = data.InnerText + "\n";
+                //get description
+                var nodes = doc.DocumentNode.SelectSingleNode("//div[@class='story-body__inner']");
+                if (nodes != null)
+                {
+                    foreach (HtmlNode node in nodes.ChildNodes)
+                    {
+                        if (node.Name == "figure")
+                        {
+
+                        }
+                        else
+                        {
+                            des += node.InnerText + "\n";
+                        }
+
+                    }
+                    //get images
+                    foreach (var nod in nodes.Descendants())
+                    {
+                        if (nod.Name == "div")
+                        {
+                            var list34 = nod.Attributes;
+                            if (list34.Contains("data-src"))
+                            {
+
+                                foreach (var jk in list34)
+                                {
+                                    if (jk.Name == "data-src")
+                                    {
+                                        if (jk.Value.Contains(".jpg"))
+                                        {
+                                            list.Add(jk.Value);
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }
+                        if (nod.Name == "img")
+                        {
+                            list.Add(nod.Attributes["src"].Value);
+                        }
+                    }
+                }
+
+                //getting image url's
+                foreach (var dataa in list)
+                {
+                    image += dataa+" ";
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+
+
+        }
+    }
+}
