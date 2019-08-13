@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using org.apache.pdfbox.pdmodel;
+using org.apache.pdfbox.util;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Xceed.Words.NET;
+using WordToPDF;
+using System.IO;
+using Spire.Pdf;
+using Spire.Pdf.Graphics;
+using System.Drawing;
+using System.Drawing.Imaging;
+
+namespace ConsoleApplication4
+{
+    class PdftoWord
+    {
+        public void PDFDoc() {
+          
+
+                        PdfDocument doc = new PdfDocument();
+                       
+             doc.LoadFromFile(@"C:\Users\naveen.v\Desktop\save2.pdf");
+
+            System.Drawing.Image bmp = doc.SaveAsImage(0);
+
+            System.Drawing.Image emf = doc.SaveAsImage(0, Spire.Pdf.Graphics.PdfImageType.Metafile);
+
+            System.Drawing.Image zoomImg = new Bitmap((int)(emf.Size.Width * 2), (int)(emf.Size.Height * 2));
+                      
+             using (Graphics g = Graphics.FromImage(zoomImg))
+                           
+              {
+                          
+               g.ScaleTransform(2.0f, 2.0f);
+
+               g.DrawImage(emf, new Rectangle(new Point(0, 0), emf.Size), new Rectangle(new Point(0, 0), emf.Size), GraphicsUnit.Pixel);
+                          
+              }
+                       
+             bmp.Save("convertToBmp.bmp", ImageFormat.Bmp);
+                        
+             System.Diagnostics.Process.Start("convertToBmp.bmp");
+                       
+             emf.Save("convertToEmf.png", ImageFormat.Png);
+                       
+             System.Diagnostics.Process.Start("convertToEmf.png");
+                      
+             zoomImg.Save("convertToZoom.png", ImageFormat.Png);
+                      
+             System.Diagnostics.Process.Start("convertToZoom.png");
+
+
+
+
+
+
+        }
+    }
+}
