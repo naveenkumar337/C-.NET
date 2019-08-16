@@ -1,0 +1,203 @@
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Word = Microsoft.Office.Interop.Word;
+using Spire.Doc;
+using System.Drawing.Imaging;
+using System.IO;
+namespace WORDTOPDF
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+            try
+            {
+                string path1 = ""; ;
+                string outpath = "";
+            openFileDialog1.InitialDirectory = "C://Desktop";
+            //Your opendialog box title name.
+            openFileDialog1.Title = "Select file to be upload.";
+            //which type file format you want to upload in database. just add them.
+            openFileDialog1.Filter = "Select Valid Document( *.doc; *.xlsx; *.html)|*.docx; *.xlsx; *.html";
+            //FilterIndex property represents the index of the filter currently selected in the file dialog box.
+            openFileDialog1.FilterIndex = 1;
+
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (openFileDialog1.CheckFileExists)
+                {
+                    string path = System.IO.Path.GetFullPath(openFileDialog1.FileName);
+                    path1 = path;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Upload Pdf document.");
+            }
+                saveFileDialog1.InitialDirectory = "c://Desktop";
+                saveFileDialog1.Title = "save files";
+                saveFileDialog1.FileName = "enter valid name";
+                saveFileDialog1.CheckPathExists = true;
+                saveFileDialog1.Filter = "AllFiles(*.*)|*.*";
+                saveFileDialog1.Filter = "TextFile(*.txt)|*.txt";
+                saveFileDialog1.Filter = "PdfFile(*.pdf)|*.pdf";
+                saveFileDialog1.FilterIndex = 1;
+                saveFileDialog1.DefaultExt = "*.txt";
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK) {
+                   
+                        outpath = System.IO.Path.GetFullPath(saveFileDialog1.FileName);
+                    
+                }
+
+                String input =outpath;
+                var output =path1;
+                Spire.Doc.Document doc = new Spire.Doc.Document();
+                doc.LoadFromFile(output);
+                using (StreamReader sr = new StreamReader(output))
+                {
+                    while (sr.ReadLine() != null)
+                    {
+                        string st2r = sr.ReadLine();
+                        if (st2r.Contains("Evaluation Warning : The document was created wit"))
+                        {
+                            st2r = "";
+                        }
+                    }
+                   sr.Close();
+                }
+                doc.SaveToFile(input, FileFormat.PDF);
+               
+
+                    
+                    
+                  
+
+                    label1.Text = "Success";
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string path1 = ""; ;
+
+            openFileDialog1.InitialDirectory = "C://Desktop";
+            //Your opendialog box title name.
+            openFileDialog1.Title = "Select file to be upload.";
+            //which type file format you want to upload in database. just add them.
+            openFileDialog1.Filter = "Select Valid Document(*.pdf; *.doc; *.xlsx; *.html)|*.pdf; *.docx; *.xlsx; *.html";
+            //FilterIndex property represents the index of the filter currently selected in the file dialog box.
+            openFileDialog1.FilterIndex = 1;
+
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (openFileDialog1.CheckFileExists)
+                {
+                    string path = System.IO.Path.GetFullPath(openFileDialog1.FileName);
+                    path1 = path;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Upload Pdf document.");
+            }
+
+            string pdfFile = path1;
+            string wordFile = @"C:\Users\naveen.v\Desktop\name.docx";
+
+            // Convert PDF file to DOCX file 
+            SautinSoft.PdfFocus f = new SautinSoft.PdfFocus();
+
+            f.OpenPdf(pdfFile);
+
+            if (f.PageCount > 0)
+            {
+                // You may choose output format between Docx and Rtf. 
+                f.WordOptions.Format = SautinSoft.PdfFocus.CWordOptions.eWordDocument.Docx;
+
+                int result = f.ToWord(wordFile);
+
+
+
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string path1 = ""; ;
+
+           openFileDialog1.InitialDirectory = "C://Desktop";
+            //Your opendialog box title name.
+            openFileDialog1.Title = "Select file to be upload.";
+            //which type file format you want to upload in database. just add them.
+            openFileDialog1.Filter = "Select Valid Document(*.pdf; *.doc; *.xlsx; *.html)|*.pdf; *.docx; *.xlsx; *.html";
+            //FilterIndex property represents the index of the filter currently selected in the file dialog box.
+            openFileDialog1.FilterIndex = 1;
+
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (openFileDialog1.CheckFileExists)
+                {
+                  string  path = System.IO.Path.GetFullPath(openFileDialog1.FileName);
+                  path1 = path;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Upload document.");
+            }
+        
+
+        Spire.Pdf.PdfDocument doc = new Spire.Pdf.PdfDocument();
+
+            doc.LoadFromFile(path1);
+            var i = doc.Pages.Count;
+            for (int j = 0; j < i; j++)
+            {
+                System.Drawing.Image bmp = doc.SaveAsImage(j);
+
+                System.Drawing.Image emf = doc.SaveAsImage(j, Spire.Pdf.Graphics.PdfImageType.Metafile);
+
+                System.Drawing.Image zoomImg = new Bitmap((int)(emf.Size.Width * 2), (int)(emf.Size.Height * 2));
+
+                using (Graphics g = Graphics.FromImage(zoomImg))
+
+                {
+
+                    g.ScaleTransform(2.0f, 2.0f);
+
+                    g.DrawImage(emf, new Rectangle(new Point(0, 0), emf.Size), new Rectangle(new Point(0, 0), emf.Size), GraphicsUnit.Pixel);
+
+                }
+
+
+
+                zoomImg.Save(@"C:\Users\naveen.v\Desktop\convertToZoom" + j+".jpeg", ImageFormat.Jpeg);
+
+         
+               
+                
+            }
+            label3.Text = "Success";
+        }
+
+        
+    }
+}
