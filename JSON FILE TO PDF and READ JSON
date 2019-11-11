@@ -66,8 +66,16 @@ namespace ConsoleApplication4
                 doc.Close();
             }
                }
-
     }
- 
- 
 }
+
+Adding Password to the Pdf:
+string OutputFile = @"D:\naveenkumar.pdf";
+                using (Stream input = new FileStream(filepath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    using (Stream output = new FileStream(OutputFile, FileMode.Create, FileAccess.Write, FileShare.None))
+                    {
+                        PdfReader reader = new PdfReader(input);
+                        PdfEncryptor.Encrypt(reader, output, true, "Nvn337@143", "secret", PdfWriter.ALLOW_SCREENREADERS);
+                    }
+                }
