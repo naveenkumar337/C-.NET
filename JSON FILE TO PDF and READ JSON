@@ -1,0 +1,73 @@
+ using MyDll;
+using System.Threading;
+using ConsoleApplication4;
+using System.IO;
+using Newtonsoft.Json;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
+namespace ConsoleApplication4
+{
+    class Program
+    {
+        private volatile bool _loop = true;
+        class SchemaInfo {
+            public string timestamp { get; set; }
+            public url url;
+            public IList<string> inputs { get; set; }
+            //  public inputs inputs;
+        }
+        class url
+        {
+            public string domain { get; set; }
+            public string frag { get; set; }
+            public string path { get; set; }
+            public string proto { get; set; }
+            public string tld { get; set; }
+            public string www { get; set; }
+        }
+       
+        static void Main(string[] args)
+        { 
+ using (StreamReader jsontext = new StreamReader("D:\\feaLog.2019-10-30T15_50_49.268Z.json.txt"))
+            {
+                string json = jsontext.ReadToEnd();
+                List<SchemaInfo> items = JsonConvert.DeserializeObject<List<SchemaInfo>>(json);
+                string filepath = @"D:\naveen.pdf";
+                Document doc = new Document(PageSize.A4, 30f, 30f, 30f, 30f);
+                PdfWriter.GetInstance(doc, new FileStream(filepath, FileMode.Create));
+
+                PdfPTable table = new PdfPTable(3);
+                table.TotalWidth = 600f;
+                //fix the absolute width of the table
+                table.LockedWidth = true;
+                //relative col widths in proportions - 1/3 and 2/3
+                float[] widths = new float[] { 2f, 4f, 6f };
+                table.SetWidths(widths);
+                table.HorizontalAlignment = 0;
+                //leave a gap before and after the table
+                table.SpacingBefore = 20f;
+                table.SpacingAfter = 30f;
+                PdfPCell cell = new PdfPCell(new Phrase("Header spanning 3 columns"));
+                cell.Colspan = 3;
+                cell.HorizontalAlignment = 1;
+                table.AddCell(cell);
+                for (int i = 0; i < items.Count; i++)
+                {
+                    string strpath = items[i].url.proto  + items[i].url.www + items[i].url.domain + items[i].url.tld + items[i].url.path;
+                    table.AddCell(items[i].timestamp);
+                    table.AddCell(strpath);
+                    string str = "";
+                    for (int j = 0; j < items[i].inputs.Count; j++) { str += items[i].inputs[j]+"\n";}
+                    table.AddCell(str);
+                }
+                doc.Open();
+                doc.Add(table);
+                doc.Close();
+            }
+               }
+
+    }
+ 
+ 
+}
