@@ -1,0 +1,38 @@
+//Get
+  HttpClient client = new HttpClient();
+  var url= "http://localhost:50064/api/User/UserLogin";
+  HttpResponseMessage res =client.GetAsync(url + "?username=" + name + "&password=" + Pass).Result;
+  if (res.StatusCode ==System.Net.HttpStatusCode.OK)
+  {
+  //sucess
+  }
+  
+ //POST:passing parrams
+ 
+ HttpClient client = new HttpClient();
+ var url= "http://localhost:50064/api/User/UserLogin";
+ HttpResponseMessage res =client.PostAsync(url + "?username=" + name + "&password=" + Pass,/*content*/null).Result;
+ if (res.StatusCode ==System.Net.HttpStatusCode.OK)
+ {
+ //sucess
+ }
+ 
+ //POST:Passing Object
+ 
+ HttpClient client = new HttpClient();
+ var url= "http://localhost:50064/api/User/UserLogin";
+ client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+ var json = JsonConvert.SerializeObject(obj);
+ HttpContent content = new StringContent(json,Encoding.UTF8, "application/json");
+ HttpResponseMessage res =client.PostAsync(url + "?username=" + name + "&password=" + Pass,/*content*/content).Result;
+ if (res.StatusCode ==System.Net.HttpStatusCode.OK)
+ {
+ //sucess
+ }
+ 
+ 
+ //IN API Return Value
+ HttpResponseMessage res = new HttpResponseMessage();
+ res.StatusCode = System.Net.HttpStatusCode.OK;
+ return res;
+ 
